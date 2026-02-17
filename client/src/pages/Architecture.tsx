@@ -1,0 +1,144 @@
+import { useArchitectureStore } from "@/hooks/use-architecture";
+import { Redirect } from "wouter";
+import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, ArrowRight } from "lucide-react";
+
+export default function Architecture() {
+  const { generatedOutput, currentContext } = useArchitectureStore();
+
+  if (!generatedOutput || !currentContext) {
+    return <Redirect to="/input" />;
+  }
+
+  // Define the maturity stages order
+  const stages = ["Current", "Crawl", "Walk", "Run"];
+
+  return (
+    <div className="min-h-screen pt-20 pb-12 px-4 md:px-8 bg-slate-50/50">
+      <div className="max-w-7xl mx-auto space-y-6">
+        
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-display font-bold text-foreground">
+              Architecture Maturity Model
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              Evolution roadmap for <span className="font-semibold text-primary">{currentContext.companyName}</span>
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Badge variant="outline" className="text-sm py-1 px-3 bg-white">
+              {currentContext.industry}
+            </Badge>
+            <Badge variant="outline" className="text-sm py-1 px-3 bg-white">
+              {currentContext.businessModel}
+            </Badge>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <Tabs defaultValue="Current" className="space-y-6">
+          <div className="flex justify-center">
+            <TabsList className="h-12 p-1 bg-white border border-border/50 shadow-sm rounded-xl">
+              {stages.map(stage => (
+                <TabsTrigger 
+                  key={stage} 
+                  value={stage}
+                  className="px-6 h-full rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white font-medium transition-all"
+                >
+                  {stage}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {generatedOutput.maturity.map((stageData) => (
+              <TabsContent key={stageData.stage} value={stageData.stage} className="space-y-6 focus-visible:outline-none">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Diagram Card */}
+                  <Card className="shadow-lg border-t-4 border-t-primary/20 overflow-hidden">
+                    <CardHeader className="bg-slate-50/50 border-b">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <CardTitle>{stageData.stage} State Architecture</CardTitle>
+                          <CardDescription>{stageData.description}</CardDescription>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <ArchitectureDiagram nodes={stageData.nodes} edges={stageData.edges} />
+                    </CardContent>
+                  </Card>
+
+                  {/* Key Changes / Capabilities */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <Card className="col-span-1 md:col-span-2 shadow-md">
+                      <CardHeader>
+                        <CardTitle className="text-lg flex items-center gap-2">
+                          <ArrowRight className="w-5 h-5 text-primary" /> Key Capabilities & Changes
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {stageData.keyChanges.map((change, idx) => (
+                            <li key={idx} className="flex items-start gap-2 text-sm text-slate-600 p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                              <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                              {change}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+
+                    {/* Stats or Metrics (Mocked for visual balance) */}
+                    <Card className="col-span-1 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/10">
+                      <CardHeader>
+                        <CardTitle className="text-lg">Maturity Score</CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex flex-col items-center justify-center py-6">
+                        <div className="relative flex items-center justify-center w-24 h-24">
+                          <svg className="w-full h-full transform -rotate-90">
+                            <circle
+                              cx="48" cy="48" r="40"
+                              stroke="currentColor" strokeWidth="8" fill="transparent"
+                              className="text-slate-200"
+                            />
+                            <circle
+                              cx="48" cy="48" r="40"
+                              stroke="currentColor" strokeWidth="8" fill="transparent"
+                              strokeDasharray={251.2}
+                              strokeDashoffset={251.2 - (251.2 * ((stages.indexOf(stageData.stage) + 1) * 25)) / 100}
+                              className="text-primary transition-all duration-1000 ease-out"
+                            />
+                          </svg>
+                          <span className="absolute text-2xl font-bold text-primary">
+                            {(stages.indexOf(stageData.stage) + 1) * 25}%
+                          </span>
+                        </div>
+                        <p className="mt-4 text-sm font-medium text-center text-muted-foreground">
+                          {stageData.stage === "Run" ? "Optimized & Automated" : "Improving Efficiency"}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                </motion.div>
+              </TabsContent>
+            ))}
+          </AnimatePresence>
+        </Tabs>
+      </div>
+    </div>
+  );
+}
