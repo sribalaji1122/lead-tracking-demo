@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Target, Users, Zap, TrendingUp, AlertTriangle } from "lucide-react";
-import ReactFlow, { Background, Controls, useNodesState, useEdgesState } from '@xyflow/react';
+import { ReactFlow, Background, Controls, useNodesState, useEdgesState } from '@xyflow/react';
 import { useMemo } from "react";
 import { nodeTypes } from "@/components/NodeTypes";
 
