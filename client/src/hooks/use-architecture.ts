@@ -66,8 +66,10 @@ export function useGenerateArchitecture() {
       return res.json() as Promise<AiOutput>;
     },
     onSuccess: (data, variables) => {
+      console.log("Frontend: Generation successful, data:", data);
       store.setContext(variables);
       store.setOutput(data);
+      console.log("Frontend: Redirecting to /architecture");
       setLocation('/architecture');
     },
   });
