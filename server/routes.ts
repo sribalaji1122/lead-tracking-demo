@@ -17,7 +17,7 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
 
-    app.post(api.architecture.generate.path, async (req, res) => {
+  app.post(api.architecture.generate.path, async (req, res) => {
     try {
       console.log("Backend: Received generate request with body:", JSON.stringify(req.body, null, 2));
       const input = companyContextSchema.parse(req.body);
@@ -101,7 +101,7 @@ RULES:
 
       console.log("Backend: Calling OpenAI...");
       const completion = await openai.chat.completions.create({
-        model: "gpt-5.2", // Using the best model for complex reasoning
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: JSON.stringify(input) }
@@ -119,10 +119,6 @@ RULES:
       const aiOutput = JSON.parse(responseContent);
       console.log("Backend: Parsed AI output successfully");
 
-      // Validate against our schema? 
-      // It's safer to just return it, but for persistence we should check.
-      // We'll trust the AI followed the schema for now, or use safe parsing.
-
       // Persist the result
       console.log("Backend: Persisting result to database...");
       const savedArch = await storage.createArchitecture({
@@ -137,7 +133,10 @@ RULES:
     } catch (err) {
       console.error("Backend Error generating architecture:", err);
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: "Invalid input data", errors: err.errors });
+        return res.status(400).json({
+          message: "Invalid input data",
+          errors: err.errors
+        });
       }
       res.status(500).json({ message: "Failed to generate architecture" });
     }
