@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { LayoutGrid, FileText, Layers, PlusCircle } from "lucide-react";
+import { LayoutGrid, FileText, Layers, PlusCircle, History } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navigation() {
@@ -10,7 +10,7 @@ export function Navigation() {
     { href: "/input", label: "New Project", icon: PlusCircle },
     { href: "/architecture", label: "Architecture", icon: Layers },
     { href: "/use-cases", label: "Use Cases", icon: FileText },
-    // { href: "/history", label: "History", icon: History },
+    { href: "/history", label: "History", icon: History },
   ];
 
   return (

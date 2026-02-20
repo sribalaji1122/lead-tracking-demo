@@ -8,6 +8,7 @@ import Home from "@/pages/Home";
 import InputForm from "@/pages/InputForm";
 import Architecture from "@/pages/Architecture";
 import UseCases from "@/pages/UseCases";
+import HistoryPage from "@/pages/History";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
           <Route path="/input" component={InputForm} />
           <Route path="/architecture" component={Architecture} />
           <Route path="/use-cases" component={UseCases} />
+          <Route path="/history" component={HistoryPage} />
           <Route component={NotFound} />
         </Switch>
       </main>
