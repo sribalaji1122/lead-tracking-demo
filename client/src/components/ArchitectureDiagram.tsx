@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { ReactFlow, Controls, Background, useNodesState, useEdgesState, MiniMap, Node, Edge, ConnectionLineType } from '@xyflow/react';
+import { ReactFlow, Controls, Background, MiniMap, ConnectionLineType, Node, Edge } from '@xyflow/react';
+import { useNodesState, useEdgesState } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { nodeTypes } from './NodeTypes';
 import dagre from 'dagre';
@@ -68,19 +69,41 @@ export function ArchitectureDiagram({ nodes: initialNodes, edges: initialEdges }
     position: { x: 0, y: 0 } // Layout will fix this
   })), [initialNodes]);
 
-  const flowEdges = useMemo(() => initialEdges.map(e => ({
-    id: e.id,
-    source: e.source,
-    target: e.target,
-    type: 'smoothstep',
-    animated: e.type === 'dotted' || e.type === 'dashed',
-    style: { 
-      strokeDasharray: e.type === 'dotted' ? '5,5' : (e.type === 'dashed' ? '10,5' : undefined),
-      stroke: '#94a3b8',
-      strokeWidth: 2
-    },
-    label: e.label
-  })), [initialEdges]);
+  const flowEdges = useMemo(() => {
+    const validEdges = initialEdges.filter(e => {
+      const sourceExists = initialNodes.some(n => n.id === e.source);
+      const targetExists = initialNodes.some(n => n.id === e.target);
+      if (!sourceExists || !targetExists) {
+        console.error(`Edge mismatch: source(${e.source}) exists: ${sourceExists}, target(${e.target}) exists: ${targetExists}`);
+      }
+      return sourceExists && targetExists;
+    });
+
+    // Task 2B: Detect isolated nodes
+    initialNodes.forEach(node => {
+      const hasEdges = validEdges.some(e => e.source === node.id || e.target === node.id);
+      if (!hasEdges) {
+        console.warn(`Node ${node.id} is isolated`);
+      }
+    });
+
+    console.log(`Nodes: ${initialNodes.length}, Edges: ${validEdges.length}`);
+
+    return validEdges.map(e => ({
+      id: e.id,
+      source: e.source,
+      target: e.target,
+      type: 'smoothstep',
+      animated: e.type === 'dotted' || e.type === 'dashed' || e.type === 'solid',
+      style: { 
+        strokeDasharray: e.type === 'dotted' ? '5,5' : (e.type === 'dashed' ? '10,5' : undefined),
+        stroke: '#94a3b8',
+        strokeWidth: 2
+      },
+      label: e.label,
+      markerEnd: { type: 'arrowclosed', color: '#94a3b8' }
+    }));
+  }, [initialNodes, initialEdges]);
 
   const { nodes: layoutedNodes, edges: layoutedEdges } = useMemo(
     () => getLayoutedElements(flowNodes, flowEdges),

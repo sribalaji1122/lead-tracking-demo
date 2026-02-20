@@ -41,7 +41,16 @@ export default function InputForm() {
   };
 
   const industries = ["Retail", "Finance", "Healthcare", "SaaS", "Manufacturing", "E-commerce"];
-  const regions = ["North America", "Europe", "APAC", "LATAM", "Global"];
+  
+  const regions = [
+    { label: "North America", countries: ["USA", "Canada", "Mexico", "Costa Rica"] },
+    { label: "Europe", countries: ["UK", "Germany", "France", "Spain", "Italy", "Netherlands"] },
+    { label: "Asia", countries: ["India", "China", "Japan", "Singapore", "UAE", "Malaysia"] },
+    { label: "Middle East", countries: ["UAE", "Saudi Arabia", "Qatar", "Oman"] },
+    { label: "Africa", countries: ["South Africa", "Kenya", "Nigeria", "Egypt"] },
+    { label: "Oceania", countries: ["Australia", "New Zealand", "Fiji"] }
+  ];
+
   const dataSources = ["Website", "Mobile App", "POS", "ERP", "Call Center", "Social Media", "IoT"];
   const channels = ["Email", "SMS", "Push Notifications", "WhatsApp", "Paid Media", "Direct Mail"];
 
@@ -132,7 +141,7 @@ export default function InputForm() {
                   name="region"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex items-center gap-2"><Globe2 className="w-4 h-4 text-primary" /> Region</FormLabel>
+                      <FormLabel className="flex items-center gap-2"><Globe2 className="w-4 h-4 text-primary" /> Region / Country</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -140,7 +149,18 @@ export default function InputForm() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {regions.map(r => <SelectItem key={r} value={r}>{r}</SelectItem>)}
+                          {regions.map(region => (
+                            <div key={region.label}>
+                              <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground bg-slate-50">
+                                {region.label}
+                              </div>
+                              {region.countries.map(country => (
+                                <SelectItem key={country} value={country}>
+                                  {country}
+                                </SelectItem>
+                              ))}
+                            </div>
+                          ))}
                         </SelectContent>
                       </Select>
                       <FormMessage />
