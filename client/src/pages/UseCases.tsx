@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Target, Users, Zap, TrendingUp, AlertTriangle } from "lucide-react";
-import { ReactFlow, Background, Controls, MiniMap } from '@xyflow/react';
+import { ReactFlow, Background, Controls, MiniMap, BackgroundVariant } from '@xyflow/react';
 import { useMemo } from "react";
 import { nodeTypes } from "@/components/NodeTypes";
 import { useNodesState, useEdgesState } from '@xyflow/react';
@@ -123,7 +123,7 @@ function JourneyVisualizer({ journey }: { journey: any }) {
         fitView
         attributionPosition="bottom-right"
       >
-        <Background variant="dots" gap={20} size={1} />
+        <Background variant={BackgroundVariant.Dots} gap={20} size={1} />
         <Controls />
         <MiniMap />
       </ReactFlow>

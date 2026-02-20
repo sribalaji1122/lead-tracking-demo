@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { ReactFlow, Controls, Background, MiniMap, ConnectionLineType, Node, Edge } from '@xyflow/react';
+import { ReactFlow, Controls, Background, MiniMap, ConnectionLineType, Node, Edge, Position, MarkerType } from '@xyflow/react';
 import { useNodesState, useEdgesState } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { nodeTypes } from './NodeTypes';
@@ -33,18 +33,18 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'LR') => 
     // Collect (x:0-300), Process (x:400-700), Engage (x:800-1100)
     let finalX = nodeWithPosition.x - nodeWidth / 2;
     
-    if (node.data.lane === 'collect') finalX = 100;
-    if (node.data.lane === 'process') finalX = 500;
-    if (node.data.lane === 'engage') finalX = 900;
-    if (node.data.lane === 'data') {
+    if (node.data?.lane === 'collect') finalX = 100;
+    if (node.data?.lane === 'process') finalX = 500;
+    if (node.data?.lane === 'engage') finalX = 900;
+    if (node.data?.lane === 'data') {
        // Data layer usually sits below
        finalX = nodeWithPosition.x; 
     }
 
     return {
       ...node,
-      targetPosition: isHorizontal ? 'left' : 'top',
-      sourcePosition: isHorizontal ? 'right' : 'bottom',
+      targetPosition: isHorizontal ? Position.Left : Position.Top,
+      sourcePosition: isHorizontal ? Position.Right : Position.Bottom,
       position: {
         x: finalX,
         y: nodeWithPosition.y - nodeHeight / 2,
@@ -101,12 +101,12 @@ export function ArchitectureDiagram({ nodes: initialNodes, edges: initialEdges }
         strokeWidth: 2
       },
       label: e.label,
-      markerEnd: { type: 'arrowclosed', color: '#94a3b8' }
+      markerEnd: { type: MarkerType.ArrowClosed, color: '#94a3b8' }
     }));
   }, [initialNodes, initialEdges]);
 
   const { nodes: layoutedNodes, edges: layoutedEdges } = useMemo(
-    () => getLayoutedElements(flowNodes, flowEdges),
+    () => getLayoutedElements(flowNodes, flowEdges as Edge[]),
     [flowNodes, flowEdges]
   );
 

@@ -45,7 +45,7 @@ export default function InputForm() {
   const regions = [
     { label: "North America", countries: ["USA", "Canada", "Mexico", "Costa Rica"] },
     { label: "Europe", countries: ["UK", "Germany", "France", "Spain", "Italy", "Netherlands"] },
-    { label: "Asia", countries: ["India", "China", "Japan", "Singapore", "UAE", "Malaysia"] },
+    { label: "Asia", countries: ["India", "China", "Japan", "Singapore", "Malaysia"] },
     { label: "Middle East", countries: ["UAE", "Saudi Arabia", "Qatar", "Oman"] },
     { label: "Africa", countries: ["South Africa", "Kenya", "Nigeria", "Egypt"] },
     { label: "Oceania", countries: ["Australia", "New Zealand", "Fiji"] }
@@ -150,12 +150,12 @@ export default function InputForm() {
                         </FormControl>
                         <SelectContent>
                           {regions.map(region => (
-                            <div key={region.label}>
+                            <div key={`group-${region.label}`}>
                               <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground bg-slate-50">
                                 {region.label}
                               </div>
                               {region.countries.map(country => (
-                                <SelectItem key={country} value={country}>
+                                <SelectItem key={`country-${country}`} value={country}>
                                   {country}
                                 </SelectItem>
                               ))}
