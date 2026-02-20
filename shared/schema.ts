@@ -77,6 +77,14 @@ export const journeyStepSchema = z.object({
   channel: z.string().optional(), // e.g. "Email", "WhatsApp"
 });
 
+export const journeySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  trigger: z.string(),
+  steps: z.array(journeyStepSchema),
+  outcome: z.string(),
+});
+
 export const useCaseSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -88,6 +96,9 @@ export const useCaseSchema = z.object({
   dataRequired: z.array(z.string()),
   kpis: z.array(z.string()),
   challenges: z.array(z.string()),
+  architectureComponentsUsed: z.array(z.string()).optional(),
+  businessImpact: z.string().optional(),
+  journeys: z.array(journeySchema).optional(),
   journey: z.object({
     entryCriteria: z.string(),
     steps: z.array(journeyStepSchema),

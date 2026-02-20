@@ -26,6 +26,7 @@ export async function registerRoutes(
       const systemPrompt = `
 You are a Senior Full-Stack React + TypeScript Architecture Visualization Engineer building InnooRyze ARC+.
 Your goal is to generate a comprehensive enterprise architecture visualization and maturity model based on the user's input.
+You are also an enterprise marketing architecture designer.
 
 You must return a STRICT JSON object that matches the following structure:
 
@@ -68,24 +69,41 @@ You must return a STRICT JSON object that matches the following structure:
       "dataRequired": ["string"],
       "kpis": ["string"],
       "challenges": ["string"],
-      "journey": {
+      "architectureComponentsUsed": ["nodeId1", "nodeId2"],
+      "businessImpact": "string",
+      "journeys": [
+        {
+          "id": "string",
+          "name": "string",
+          "trigger": "string",
+          "outcome": "string",
+          "steps": [
+            {
+              "id": "string",
+              "type": "entry" | "action" | "decision" | "exit",
+              "label": "string",
+              "channel": "string (optional)"
+            }
+          ]
+        }
+      ],
+      "journey": { // Keep for schema compatibility but prioritize "journeys" array
         "entryCriteria": "string",
         "exitCriteria": "string",
-        "steps": [
-          {
-            "id": "string",
-            "type": "entry" | "action" | "decision" | "exit",
-            "label": "string",
-            "channel": "string (optional)"
-          }
-        ]
+        "steps": []
       }
     }
-    // ... max 6 use cases
+    // ... EXACTLY 6 use cases
   ]
 }
 
 RULES:
+- GENERATE EXACTLY 6 USE CASES.
+- Each use case must explicitly reference which architecture components it uses via architectureComponentsUsed.
+- Each use case must contain at least 1 journey in the "journeys" array.
+- Total journeys across all 6 use cases must be at least 6.
+- Each journey must have a minimum of 5 steps.
+- Journeys must logically depend on the use case, and use cases must logically depend on the architecture.
 - Lanes: Collect (x:100), Process (x:500), Engage (x:900), Data (bottom).
 - Node Types: 
   - sourceNode (Data Sources)

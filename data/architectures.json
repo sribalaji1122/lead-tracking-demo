@@ -1,0 +1,492 @@
+[
+  {
+    "companyName": "InnooRyze",
+    "context": {
+      "companyName": "InnooRyze",
+      "industry": "SaaS",
+      "businessModel": "B2B",
+      "region": "Global",
+      "dataSources": [
+        "Website"
+      ],
+      "toolsUsed": {
+        "crm": "Hubspot",
+        "marketingAutomation": "Hubspot",
+        "analytics": "Power BI",
+        "dataWarehouse": "BigQuery"
+      },
+      "activationChannels": [
+        "Email"
+      ]
+    },
+    "output": {
+      "maturity": [
+        {
+          "stage": "Current",
+          "description": "Currently using Hubspot for CRM and Marketing Automation, along with Power BI for analytics and BigQuery for data warehousing. Data is primarily collected from the website and activation is done through email.",
+          "keyChanges": [
+            "Integrate existing tools for data coherence",
+            "Basic email campaigns from Hubspot"
+          ],
+          "nodes": [
+            {
+              "id": "1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "2",
+              "type": "systemNode",
+              "label": "Hubspot CRM",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "3",
+              "type": "systemNode",
+              "label": "Hubspot Marketing Automation",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "4",
+              "type": "dataNode",
+              "label": "BigQuery Data Warehouse",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "5",
+              "type": "channelNode",
+              "label": "Email",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "e1",
+              "source": "1",
+              "target": "2",
+              "type": "solid",
+              "label": "Data Collection"
+            },
+            {
+              "id": "e2",
+              "source": "2",
+              "target": "4",
+              "type": "solid",
+              "label": "Data Sync"
+            },
+            {
+              "id": "e3",
+              "source": "2",
+              "target": "3",
+              "type": "solid",
+              "label": "Marketing Data Flow"
+            }
+          ]
+        },
+        {
+          "stage": "Crawl",
+          "description": "Initiating data integration with basic reporting and automated campaigns set up. Slightly advanced segmentation based on basic user data.",
+          "keyChanges": [
+            "Adding basic analytics dashboards",
+            "Implementing simple segmented email campaigns"
+          ],
+          "nodes": [
+            {
+              "id": "1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "2",
+              "type": "systemNode",
+              "label": "Hubspot CRM",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "3",
+              "type": "systemNode",
+              "label": "Hubspot Marketing Automation",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "4",
+              "type": "dataNode",
+              "label": "BigQuery Data Warehouse",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "5",
+              "type": "channelNode",
+              "label": "Email",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "e1",
+              "source": "1",
+              "target": "2",
+              "type": "solid",
+              "label": "Data Collection"
+            },
+            {
+              "id": "e2",
+              "source": "2",
+              "target": "4",
+              "type": "solid",
+              "label": "Data Sync"
+            },
+            {
+              "id": "e3",
+              "source": "3",
+              "target": "4",
+              "type": "dashed",
+              "label": "Integrated Marketing Data"
+            },
+            {
+              "id": "e4",
+              "source": "3",
+              "target": "5",
+              "type": "solid",
+              "label": "Email Campaigns"
+            }
+          ]
+        },
+        {
+          "stage": "Walk",
+          "description": "Ready to implement a Customer Data Platform (CDP) for advanced analytics and personalized marketing campaigns. Greater emphasis on user engagement channels.",
+          "keyChanges": [
+            "Implementing a CDP for enhanced personalization",
+            "Real-time data synchronization across platforms"
+          ],
+          "nodes": [
+            {
+              "id": "1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "2",
+              "type": "systemNode",
+              "label": "Hubspot CRM",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "3",
+              "type": "systemNode",
+              "label": "Hubspot Marketing Automation",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "4",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "Segment"
+            },
+            {
+              "id": "5",
+              "type": "dataNode",
+              "label": "BigQuery Data Warehouse",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "6",
+              "type": "channelNode",
+              "label": "Email",
+              "lane": "engage",
+              "tech": "N/A"
+            },
+            {
+              "id": "7",
+              "type": "channelNode",
+              "label": "SMS",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "e1",
+              "source": "1",
+              "target": "2",
+              "type": "solid",
+              "label": "Data Collection"
+            },
+            {
+              "id": "e2",
+              "source": "2",
+              "target": "4",
+              "type": "solid",
+              "label": "Data Sync"
+            },
+            {
+              "id": "e3",
+              "source": "3",
+              "target": "4",
+              "type": "dashed",
+              "label": "Integrated Marketing Data"
+            },
+            {
+              "id": "e4",
+              "source": "4",
+              "target": "5",
+              "type": "solid",
+              "label": "CDP to Warehouse"
+            },
+            {
+              "id": "e5",
+              "source": "4",
+              "target": "6",
+              "type": "dotted",
+              "label": "Real-time Email Personalization"
+            },
+            {
+              "id": "e6",
+              "source": "4",
+              "target": "7",
+              "type": "dotted",
+              "label": "Real-time SMS Marketing"
+            }
+          ]
+        },
+        {
+          "stage": "Run",
+          "description": "Fully optimized architecture with real-time data processing, automated personalized marketing campaigns across multiple channels, and complete analytics integration.",
+          "keyChanges": [
+            "Automated advanced decision-making through AI-driven insights",
+            "Robust multi-channel engagement strategies using real-time data"
+          ],
+          "nodes": [
+            {
+              "id": "1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "2",
+              "type": "systemNode",
+              "label": "Hubspot CRM",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "3",
+              "type": "systemNode",
+              "label": "Hubspot Marketing Automation",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "4",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "Segment"
+            },
+            {
+              "id": "5",
+              "type": "dataNode",
+              "label": "BigQuery Data Warehouse",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "6",
+              "type": "channelNode",
+              "label": "Email",
+              "lane": "engage",
+              "tech": "N/A"
+            },
+            {
+              "id": "7",
+              "type": "channelNode",
+              "label": "SMS",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "e1",
+              "source": "1",
+              "target": "2",
+              "type": "solid",
+              "label": "Data Collection"
+            },
+            {
+              "id": "e2",
+              "source": "2",
+              "target": "4",
+              "type": "solid",
+              "label": "Data Sync"
+            },
+            {
+              "id": "e3",
+              "source": "3",
+              "target": "4",
+              "type": "dashed",
+              "label": "Integrated Marketing Data"
+            },
+            {
+              "id": "e4",
+              "source": "4",
+              "target": "5",
+              "type": "solid",
+              "label": "CDP to Warehouse"
+            },
+            {
+              "id": "e5",
+              "source": "4",
+              "target": "6",
+              "type": "dotted",
+              "label": "Real-time Email Personalization"
+            },
+            {
+              "id": "e6",
+              "source": "4",
+              "target": "7",
+              "type": "dotted",
+              "label": "Real-time SMS Marketing"
+            },
+            {
+              "id": "e7",
+              "source": "5",
+              "target": "4",
+              "type": "solid",
+              "label": "Continuous Data Analysis"
+            }
+          ]
+        }
+      ],
+      "useCases": [
+        {
+          "id": "uc1",
+          "name": "Basic Email Campaigns",
+          "description": "Executing targeted email campaigns using Hubspot.",
+          "goals": [
+            "Increase engagement",
+            "Drive conversions"
+          ],
+          "audience": "Business clients",
+          "benefits": [
+            "Improved communication",
+            "Higher open rates"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "User email addresses",
+            "Campaign performance data"
+          ],
+          "kpis": [
+            "Open rates",
+            "Click-through rates"
+          ],
+          "challenges": [
+            "Data segmentation",
+            "Limited insights"
+          ],
+          "journey": {
+            "entryCriteria": "Users sign up for updates",
+            "exitCriteria": "Measure success through KPIs",
+            "steps": [
+              {
+                "id": "s1",
+                "type": "entry",
+                "label": "User signs up"
+              },
+              {
+                "id": "s2",
+                "type": "action",
+                "label": "Create email campaign"
+              },
+              {
+                "id": "s3",
+                "type": "action",
+                "label": "Send out campaign"
+              },
+              {
+                "id": "s4",
+                "type": "exit",
+                "label": "Analyze results"
+              }
+            ]
+          }
+        },
+        {
+          "id": "uc2",
+          "name": "Automated Reporting",
+          "description": "Automated generation of reports using Power BI.",
+          "goals": [
+            "Reduce manual reporting time",
+            "Provide insights"
+          ],
+          "audience": "Internal stakeholders",
+          "benefits": [
+            "Time-savings",
+            "Enhanced data visibility"
+          ],
+          "channels": [
+            "N/A"
+          ],
+          "dataRequired": [
+            "Sales data",
+            "User behavior data"
+          ],
+          "kpis": [
+            "Report generation time",
+            "Actionable insights provided"
+          ],
+          "challenges": [
+            "Data integration",
+            "Ensuring accuracy"
+          ],
+          "journey": {
+            "entryCriteria": "Sales and user data availability",
+            "exitCriteria": "Reports generated and delivered",
+            "steps": [
+              {
+                "id": "s1",
+                "type": "entry",
+                "label": "Collect data"
+              },
+              {
+                "id": "s2",
+                "type": "action",
+                "label": "Generate report using Power BI"
+              },
+              {
+                "id": "s3",
+                "type": "exit",
+                "label": "Distribute report"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "id": 1771569665271,
+    "createdAt": "2026-02-20T06:41:05.271Z"
+  }
+]
