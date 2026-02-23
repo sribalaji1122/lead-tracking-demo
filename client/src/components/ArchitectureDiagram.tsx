@@ -13,9 +13,9 @@ const nodeWidth = 200;
 const nodeHeight = 80;
 
 // Helper to layout nodes automatically
-const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'LR') => {
-  const isHorizontal = direction === 'LR';
-  dagreGraph.setGraph({ rankdir: direction });
+const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
+  const isHorizontal = true;
+  dagreGraph.setGraph({ rankdir: 'LR' });
 
   nodes.forEach((node) => {
     dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
@@ -29,30 +29,37 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'LR') => 
 
   const layoutedNodes = nodes.map((node) => {
     const nodeWithPosition = dagreGraph.node(node.id);
-    // Mandatory Layout: Group nodes by lane positions
-    let finalX = nodeWithPosition.x;
+    
+    // 1. Force lane grouping strictly
+    let lane = (node.data?.lane as string)?.toLowerCase();
+    const type = node.type as string;
+
+    // 2. Infer lane if undefined
+    if (!lane) {
+      if (type === 'sourceNode') lane = 'collect';
+      else if (type === 'channelNode') lane = 'engage';
+      else if (type === 'dataNode') lane = 'data';
+      else if (type === 'systemNode') lane = 'process';
+      else lane = 'process';
+    }
+
+    // 5. Layout positions
+    let finalX = 500; // default process
     let finalY = nodeWithPosition.y - nodeHeight / 2;
-    
-    const lane = (node.data?.lane as string)?.toLowerCase() || "";
-    
-    if (lane === 'collect') {
-      finalX = 100;
-    } else if (lane === 'process') {
-      finalX = 500;
-    } else if (lane === 'engage' || lane === 'activate') {
-      finalX = 900;
-    } else if (lane === 'data' || lane === 'service') {
-      finalY = 450 + (nodeWithPosition.y % 150); // Offset to prevent overlap in bottom lane
+
+    if (lane === 'collect') finalX = 100;
+    else if (lane === 'process') finalX = 500;
+    else if (lane === 'engage' || lane === 'activate') finalX = 900;
+    else if (lane === 'data' || lane === 'service') {
+      finalX = nodeWithPosition.x;
+      finalY = 500 + (nodeWithPosition.y % 100);
     }
 
     return {
       ...node,
-      targetPosition: isHorizontal ? Position.Left : Position.Top,
-      sourcePosition: isHorizontal ? Position.Right : Position.Bottom,
-      position: {
-        x: finalX,
-        y: finalY,
-      },
+      targetPosition: Position.Left,
+      sourcePosition: Position.Right,
+      position: { x: finalX, y: finalY },
     };
   });
 
@@ -65,30 +72,48 @@ interface ArchitectureDiagramProps {
 }
 
 export function ArchitectureDiagram({ nodes: initialNodes, edges: initialEdges }: ArchitectureDiagramProps) {
-  if (!initialNodes || initialNodes.length === 0) {
-    return (
-      <div className="w-full h-[600px] bg-slate-50 rounded-2xl border border-border flex items-center justify-center text-muted-foreground italic">
-        No architecture data available
-      </div>
-    );
-  }
-
   // Transform API nodes to ReactFlow nodes
-  const flowNodes = useMemo(() => initialNodes.map(n => ({
+  const flowNodes = useMemo(() => (initialNodes ?? []).map((n: any) => ({
     id: n.id,
     type: n.type,
     data: { label: n.label, tech: n.tech, lane: n.lane, ...n },
-    position: { x: 0, y: 0 } // Layout will fix this
+    position: { x: 0, y: 0 }
   })), [initialNodes]);
 
   const flowEdges = useMemo(() => {
-    const validEdges = (initialEdges ?? []).filter(e => {
-      const sourceExists = initialNodes.some(n => n.id === e.source);
-      const targetExists = initialNodes.some(n => n.id === e.target);
-      return sourceExists && targetExists;
-    });
+    const edges = [...(initialEdges ?? [])];
+    
+    // 3. Automatically build flow
+    const collectNodes = (initialNodes ?? []).filter((n: any) => n.lane === 'collect' || n.type === 'sourceNode');
+    const processNodes = (initialNodes ?? []).filter((n: any) => !n.lane || n.lane === 'process' || n.type === 'systemNode');
+    const engageNodes = (initialNodes ?? []).filter((n: any) => n.lane === 'engage' || n.lane === 'activate' || n.type === 'channelNode');
+    const dataNodes = (initialNodes ?? []).filter((n: any) => n.lane === 'data' || n.lane === 'service' || n.type === 'dataNode');
 
-    return validEdges.map(e => ({
+    if (processNodes.length > 0) {
+      collectNodes.forEach((c: any) => {
+        if (!edges.some((e: any) => e.source === c.id)) {
+          edges.push({ id: `auto-${c.id}-${processNodes[0].id}`, source: c.id, target: processNodes[0].id, type: 'smoothstep' });
+        }
+      });
+      
+      if (engageNodes.length > 0) {
+        processNodes.forEach((p: any) => {
+          if (!edges.some((e: any) => e.source === p.id)) {
+            edges.push({ id: `auto-${p.id}-${engageNodes[0].id}`, source: p.id, target: engageNodes[0].id, type: 'smoothstep' });
+          }
+        });
+      }
+
+      if (dataNodes.length > 0) {
+        processNodes.forEach((p: any) => {
+          if (!edges.some((e: any) => e.source === p.id && dataNodes.some((d: any) => d.id === e.target))) {
+            edges.push({ id: `auto-${p.id}-${dataNodes[0].id}`, source: p.id, target: dataNodes[0].id, type: 'smoothstep' });
+          }
+        });
+      }
+    }
+
+    return edges.map((e: any) => ({
       id: e.id,
       source: e.source,
       target: e.target,
@@ -114,14 +139,7 @@ export function ArchitectureDiagram({ nodes: initialNodes, edges: initialEdges }
 
   return (
     <div className="w-full h-[600px] bg-slate-50 rounded-2xl border border-border overflow-hidden relative group">
-      {/* Lane Background Indicators */}
-      <div className="absolute inset-0 pointer-events-none flex opacity-5">
-        <div className="flex-1 border-r border-slate-900 bg-blue-100" />
-        <div className="flex-1 border-r border-slate-900 bg-purple-100" />
-        <div className="flex-1 bg-green-100" />
-      </div>
-      
-      {/* Lane Labels */}
+      {/* 4. Always render lane headers visibly */}
       <div className="absolute top-4 inset-x-0 flex justify-between px-20 pointer-events-none z-10 font-display font-bold text-slate-400 uppercase tracking-widest text-sm">
         <div className="w-[300px] text-center">COLLECT</div>
         <div className="w-[300px] text-center">PROCESS</div>

@@ -4955,5 +4955,674 @@
     },
     "id": 1771828665924,
     "createdAt": "2026-02-23T06:37:45.924Z"
+  },
+  {
+    "companyName": "Treffer Technologies",
+    "context": {
+      "companyName": "Treffer Technologies",
+      "industry": "Manufacturing",
+      "businessModel": "B2B",
+      "region": "India",
+      "dataSources": [
+        "Website",
+        "Call Center",
+        "Social Media",
+        "IoT",
+        "In-store beacon data",
+        "Marketing campaign metadata"
+      ],
+      "toolsUsed": {
+        "crm": "Zoho CRM",
+        "marketingAutomation": "Zoho Marketing Plus",
+        "analytics": "GA4"
+      },
+      "activationChannels": [
+        "Email"
+      ]
+    },
+    "output": {
+      "maturity": [
+        {
+          "stage": "Current",
+          "description": "The organization is primarily collecting data from various sources but has minimal integration and processing capabilities.",
+          "keyChanges": [
+            "Basic data collection from core sources",
+            "Manual reporting with limited analytics"
+          ],
+          "nodes": [
+            {
+              "id": "data-source-1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "data-source-2",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "data-source-3",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            }
+          ],
+          "edges": []
+        },
+        {
+          "stage": "Crawl",
+          "description": "Basic systems in place for data collection and limited processing capabilities with initial automation.",
+          "keyChanges": [
+            "Implementation of Zoho CRM for customer data management",
+            "Initial use of Zoho Marketing Plus for email campaigns"
+          ],
+          "nodes": [
+            {
+              "id": "data-source-4",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "data-source-5",
+              "type": "sourceNode",
+              "label": "In-store Beacon Data",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "system-1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "channel-1",
+              "type": "channelNode",
+              "label": "Email",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge-1",
+              "source": "data-source-1",
+              "target": "system-1",
+              "type": "solid"
+            },
+            {
+              "id": "edge-2",
+              "source": "data-source-2",
+              "target": "system-1",
+              "type": "solid"
+            }
+          ]
+        },
+        {
+          "stage": "Walk",
+          "description": "Enhanced integration with real-time analytics and use of marketing automation for targeted campaigns.",
+          "keyChanges": [
+            "Incorporation of analytics tools (GA4) for data insights",
+            "Advanced segmentation using data from multiple sources"
+          ],
+          "nodes": [
+            {
+              "id": "data-node-1",
+              "type": "dataNode",
+              "label": "Data Warehouse",
+              "lane": "data",
+              "tech": "N/A"
+            },
+            {
+              "id": "system-2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge-3",
+              "source": "system-1",
+              "target": "data-node-1",
+              "type": "solid"
+            },
+            {
+              "id": "edge-4",
+              "source": "data-node-1",
+              "target": "system-2",
+              "type": "solid"
+            }
+          ]
+        },
+        {
+          "stage": "Run",
+          "description": "The organization is fully utilizing real-time data capabilities and personalized customer engagement.",
+          "keyChanges": [
+            "Implementation of real-time data processing",
+            "Personalization at scale using advanced analytics"
+          ],
+          "nodes": [
+            {
+              "id": "system-3",
+              "type": "systemNode",
+              "label": "Real-time Analytics Engine",
+              "lane": "process",
+              "tech": "N/A"
+            },
+            {
+              "id": "channel-2",
+              "type": "channelNode",
+              "label": "SMS",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge-5",
+              "source": "data-node-1",
+              "target": "system-3",
+              "type": "dotted"
+            },
+            {
+              "id": "edge-6",
+              "source": "system-2",
+              "target": "channel-2",
+              "type": "dashed"
+            }
+          ]
+        }
+      ],
+      "useCases": [
+        {
+          "id": "uc-1",
+          "name": "Lead Generation",
+          "description": "Generate potential leads using various data sources to engage customers effectively.",
+          "goals": [
+            "Increase lead pools",
+            "Enhance engagement rates"
+          ],
+          "audience": "B2B marketers",
+          "benefits": [
+            "Higher conversion rates",
+            "Improved targeting"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Website",
+            "Call Center"
+          ],
+          "kpis": [
+            "Number of leads",
+            "Engagement metrics"
+          ],
+          "challenges": [
+            "Data silos",
+            "Inaccurate information"
+          ],
+          "architectureComponentsUsed": [
+            "data-source-1",
+            "data-source-2",
+            "system-1"
+          ],
+          "businessImpact": "Increased lead generation leading to more business opportunities.",
+          "journeys": [
+            {
+              "id": "journey-1",
+              "name": "Lead Capture Journey",
+              "trigger": "New visitor on website",
+              "outcome": "New lead added to CRM",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Visitor arrives on website",
+                  "channel": "Website"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Fill out contact form",
+                  "channel": "Website"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Data sent to Zoho CRM",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Is lead qualified?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Lead added to CRM",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "New visitor on website",
+            "exitCriteria": "Lead added to Zoho CRM",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc-2",
+          "name": "Customer Engagement Campaigns",
+          "description": "Utilize data to send targeted marketing campaigns for improved customer engagement.",
+          "goals": [
+            "Increase email open rates",
+            "Enhance customer interaction"
+          ],
+          "audience": "Existing customers",
+          "benefits": [
+            "Stronger customer relationships",
+            "Higher retention rates"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Call Center",
+            "CRM"
+          ],
+          "kpis": [
+            "Campaign results",
+            "Customer feedback"
+          ],
+          "challenges": [
+            "Low engagement",
+            "Unaccurate targeting"
+          ],
+          "architectureComponentsUsed": [
+            "data-source-2",
+            "system-1",
+            "system-2"
+          ],
+          "businessImpact": "Improved customer retention and satisfaction.",
+          "journeys": [
+            {
+              "id": "journey-2",
+              "name": "Email Engagement Journey",
+              "trigger": "Campaign launch",
+              "outcome": "Customer opens email",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Select customer list",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Create and schedule email campaign",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Email sent via Zoho",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Did customer open email?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Capture engagement metrics",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Campaign launched",
+            "exitCriteria": "Metrics captured",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc-3",
+          "name": "Social Media Listening and Response",
+          "description": "Monitor social media channels to engage with customers and manage brand reputation.",
+          "goals": [
+            "Improve customer response",
+            "Enhance brand image"
+          ],
+          "audience": "Social media users",
+          "benefits": [
+            "Quick feedback loops",
+            "Proactive engagement"
+          ],
+          "channels": [
+            "Social Media"
+          ],
+          "dataRequired": [
+            "Social Media"
+          ],
+          "kpis": [
+            "Response time",
+            "Positive vs Negative feedback"
+          ],
+          "challenges": [
+            "High volume of mentions",
+            "Negative comments management"
+          ],
+          "architectureComponentsUsed": [
+            "data-source-3"
+          ],
+          "businessImpact": "Stronger online presence leading to better brand sentiment.",
+          "journeys": [
+            {
+              "id": "journey-3",
+              "name": "Social Monitoring Journey",
+              "trigger": "New mention on social media",
+              "outcome": "Engagement with customer",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Monitor social channels",
+                  "channel": "Social Media"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Identify mentions",
+                  "channel": "Social Media"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Craft response to mention",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Is response necessary?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Engage with customer",
+                  "channel": "Social Media"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "New mention found",
+            "exitCriteria": "Response executed",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc-4",
+          "name": "Campaign Performance Analytics",
+          "description": "Analyze performance of marketing campaigns through analytics tools.",
+          "goals": [
+            "Optimize campaigns",
+            "Increase ROI"
+          ],
+          "audience": "Marketing teams",
+          "benefits": [
+            "Data-driven insights",
+            "Improved campaign strategies"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Campaign data",
+            "Analytics tools"
+          ],
+          "kpis": [
+            "ROI",
+            "Click-through rate"
+          ],
+          "challenges": [
+            "Data interpretation",
+            "Resource allocation"
+          ],
+          "architectureComponentsUsed": [
+            "system-2"
+          ],
+          "businessImpact": "Better campaign strategies leading to higher ROI.",
+          "journeys": [
+            {
+              "id": "journey-4",
+              "name": "Campaign Performance Analysis Journey",
+              "trigger": "Campaign completion",
+              "outcome": "Performance results generated",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Collect campaign data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Analyze using GA4",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Generate performance report",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Are insights actionable?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Distribute report to team",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Campaign completed",
+            "exitCriteria": "Report distributed",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc-5",
+          "name": "Real-Time Customer Insights",
+          "description": "Utilize real-time analytics for immediate customer insight generation.",
+          "goals": [
+            "Enhance customer understanding",
+            "Improve strategy execution"
+          ],
+          "audience": "Marketing teams",
+          "benefits": [
+            "Immediate insights",
+            "Better decision making"
+          ],
+          "channels": [
+            "In-store"
+          ],
+          "dataRequired": [
+            "IoT",
+            "Beacon data"
+          ],
+          "kpis": [
+            "Speed of insights",
+            "Accuracy of insights"
+          ],
+          "challenges": [
+            "Integration of data sources",
+            "Real-time processing"
+          ],
+          "architectureComponentsUsed": [
+            "data-source-4",
+            "data-source-5",
+            "system-3"
+          ],
+          "businessImpact": "Fast, accurate customer insights leading to responsive strategies.",
+          "journeys": [
+            {
+              "id": "journey-5",
+              "name": "Real-Time Insight Generation Journey",
+              "trigger": "Customer enters location",
+              "outcome": "Insights generated",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Detect customer via IoT data",
+                  "channel": "IoT"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Collect associated beacon data",
+                  "channel": "In-store"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Send data to real-time analytics engine",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Are insights ready?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Utilize insights in strategy",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Customer detected",
+            "exitCriteria": "Insights utilized",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc-6",
+          "name": "Customer Journey Mapping",
+          "description": "Leverage data to visualize and understand customer journeys across touchpoints.",
+          "goals": [
+            "Improve customer experience",
+            "Optimize touchpoints"
+          ],
+          "audience": "All departments",
+          "benefits": [
+            "Unified understanding",
+            "Better resource allocation"
+          ],
+          "channels": [
+            "Email",
+            "In-store"
+          ],
+          "dataRequired": [
+            "CRM",
+            "Call Center",
+            "Beacon data"
+          ],
+          "kpis": [
+            "Customer satisfaction",
+            "Touchpoint effectiveness"
+          ],
+          "challenges": [
+            "Data integration",
+            "Complexity of mapping"
+          ],
+          "architectureComponentsUsed": [
+            "system-1",
+            "data-source-5"
+          ],
+          "businessImpact": "Enhanced customer experience leading to increased loyalty.",
+          "journeys": [
+            {
+              "id": "journey-6",
+              "name": "Journey Mapping Process",
+              "trigger": "Strategizing customer insights",
+              "outcome": "Customer journey visualized",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Gather data from CRM",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Analyze touchpoints using data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Create visual map of journey",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Review journey for gaps?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Update journey map",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Data collected",
+            "exitCriteria": "Journey map updated",
+            "steps": []
+          }
+        }
+      ]
+    },
+    "id": 1771831968121,
+    "createdAt": "2026-02-23T07:32:48.121Z"
   }
 ]

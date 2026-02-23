@@ -21,25 +21,32 @@ interface JourneyDiagramProps {
 
 export function JourneyDiagram({ journey }: JourneyDiagramProps) {
   const { initialNodes, initialEdges } = useMemo(() => {
-    const steps = journey?.steps ?? [];
-    if (steps.length === 0) return { initialNodes: [], initialEdges: [] };
+    // 1. If journey.steps is empty: Auto-generate one step
+    const steps = [...(journey?.steps ?? [])];
+    if (steps.length === 0) {
+      steps.push({
+        id: 'auto-step-1',
+        label: 'Primary Engagement Touchpoint',
+        type: 'action'
+      });
+    }
 
     const flowNodes: any[] = [];
     const flowEdges: any[] = [];
 
-    // Entry Node
+    // 2. Build diagram like: Entry → Step1 → Exit
+    // 3. Always render at least 3 nodes: Entry, One action node, Exit
     flowNodes.push({
       id: 'start-node',
       type: 'decisionNode',
       position: { x: 250, y: -120 },
       data: { 
-        label: 'ENTRY: ' + (journey.entryCriteria ?? 'Start'), 
+        label: 'ENTRY: ' + (journey?.entryCriteria ?? 'Start'), 
         type: 'entryNode' 
       },
       style: { backgroundColor: '#dcfce7', borderColor: '#22c55e' }
     });
 
-    // Step Nodes
     steps.forEach((step: any, index: number) => {
       flowNodes.push({
         id: step.id,
@@ -49,11 +56,11 @@ export function JourneyDiagram({ journey }: JourneyDiagramProps) {
           label: step.label, 
           type: step.type === 'decision' ? 'decisionNode' : 'actionNode', 
           channel: step.channel,
+          // 5. Map channel icon if exists
           icon: getChannelIcon(step.channel)
         }
       });
 
-      // Connections
       if (index === 0) {
         flowEdges.push({
           id: 'start-to-first',
@@ -73,14 +80,13 @@ export function JourneyDiagram({ journey }: JourneyDiagramProps) {
       }
     });
 
-    // Exit Node
     const lastY = steps.length * 120;
     flowNodes.push({
       id: 'end-node',
       type: 'decisionNode',
       position: { x: 250, y: lastY },
       data: { 
-        label: 'EXIT: ' + (journey.exitCriteria ?? 'End'), 
+        label: 'EXIT: ' + (journey?.exitCriteria ?? 'End'), 
         type: 'exitNode' 
       },
       style: { backgroundColor: '#fee2e2', borderColor: '#ef4444' }
@@ -99,14 +105,6 @@ export function JourneyDiagram({ journey }: JourneyDiagramProps) {
 
   const [nodes] = useNodesState(initialNodes);
   const [edges] = useEdgesState(initialEdges);
-
-  if (!journey || (journey.steps ?? []).length === 0) {
-    return (
-      <div className="h-[400px] w-full bg-slate-50 rounded-lg border border-border mt-4 flex items-center justify-center text-muted-foreground">
-        Journey not available
-      </div>
-    );
-  }
 
   return (
     <div className="h-[400px] w-full bg-slate-50 rounded-lg border border-border mt-4">
