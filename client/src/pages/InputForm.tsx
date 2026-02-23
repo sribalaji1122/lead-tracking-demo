@@ -40,7 +40,11 @@ export default function InputForm() {
     mutate(data);
   };
 
-  const industries = ["Retail", "Finance", "Healthcare", "SaaS", "Manufacturing", "E-commerce"];
+  const industries = [
+    "Retail", "Finance", "Healthcare", "SaaS", "Manufacturing", "E-commerce",
+    "Government", "Non-Profit", "Energy & Utilities", "FMCG", "EdTech", 
+    "FinTech", "Gaming", "Aviation", "Food & Beverage", "Construction", "Consulting"
+  ];
   
   const regions = [
     { label: "North America", countries: ["USA", "Canada", "Mexico", "Costa Rica"] },
@@ -51,7 +55,12 @@ export default function InputForm() {
     { label: "Oceania", countries: ["Australia", "New Zealand", "Fiji"] }
   ];
 
-  const dataSources = ["Website", "Mobile App", "POS", "ERP", "Call Center", "Social Media", "IoT"];
+  const dataSources = [
+    "Website", "Mobile App", "POS", "ERP", "Call Center", "Social Media", "IoT",
+    "IoT device data", "In-store beacon data", "Chatbot interactions", 
+    "Social media engagement", "Ad impressions data", "Survey responses", 
+    "Email engagement data", "Webhooks", "API integrations", "Marketing campaign metadata"
+  ];
   const channels = ["Email", "SMS", "Push Notifications", "WhatsApp", "Paid Media", "Direct Mail"];
 
   return (

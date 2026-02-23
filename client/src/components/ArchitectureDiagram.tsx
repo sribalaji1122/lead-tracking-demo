@@ -29,16 +29,20 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'LR') => 
 
   const layoutedNodes = nodes.map((node) => {
     const nodeWithPosition = dagreGraph.node(node.id);
-    // Simple lane logic: override X based on lane if available
-    // Collect (x:0-300), Process (x:400-700), Engage (x:800-1100)
-    let finalX = nodeWithPosition.x - nodeWidth / 2;
+    // Mandatory Layout: Group nodes by lane positions
+    let finalX = nodeWithPosition.x;
+    let finalY = nodeWithPosition.y - nodeHeight / 2;
     
-    if (node.data?.lane === 'collect') finalX = 100;
-    if (node.data?.lane === 'process') finalX = 500;
-    if (node.data?.lane === 'engage') finalX = 900;
-    if (node.data?.lane === 'data') {
-       // Data layer usually sits below
-       finalX = nodeWithPosition.x; 
+    const lane = (node.data?.lane as string)?.toLowerCase() || "";
+    
+    if (lane === 'collect') {
+      finalX = 100;
+    } else if (lane === 'process') {
+      finalX = 500;
+    } else if (lane === 'engage' || lane === 'activate') {
+      finalX = 900;
+    } else if (lane === 'data' || lane === 'service') {
+      finalY = 450 + (nodeWithPosition.y % 150); // Offset to prevent overlap in bottom lane
     }
 
     return {
@@ -47,7 +51,7 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'LR') => 
       sourcePosition: isHorizontal ? Position.Right : Position.Bottom,
       position: {
         x: finalX,
-        y: nodeWithPosition.y - nodeHeight / 2,
+        y: finalY,
       },
     };
   });
@@ -61,6 +65,14 @@ interface ArchitectureDiagramProps {
 }
 
 export function ArchitectureDiagram({ nodes: initialNodes, edges: initialEdges }: ArchitectureDiagramProps) {
+  if (!initialNodes || initialNodes.length === 0) {
+    return (
+      <div className="w-full h-[600px] bg-slate-50 rounded-2xl border border-border flex items-center justify-center text-muted-foreground italic">
+        No architecture data available
+      </div>
+    );
+  }
+
   // Transform API nodes to ReactFlow nodes
   const flowNodes = useMemo(() => initialNodes.map(n => ({
     id: n.id,
@@ -70,33 +82,20 @@ export function ArchitectureDiagram({ nodes: initialNodes, edges: initialEdges }
   })), [initialNodes]);
 
   const flowEdges = useMemo(() => {
-    const validEdges = initialEdges.filter(e => {
+    const validEdges = (initialEdges ?? []).filter(e => {
       const sourceExists = initialNodes.some(n => n.id === e.source);
       const targetExists = initialNodes.some(n => n.id === e.target);
-      if (!sourceExists || !targetExists) {
-        console.error(`Edge mismatch: source(${e.source}) exists: ${sourceExists}, target(${e.target}) exists: ${targetExists}`);
-      }
       return sourceExists && targetExists;
     });
-
-    // Task 2B: Detect isolated nodes
-    initialNodes.forEach(node => {
-      const hasEdges = validEdges.some(e => e.source === node.id || e.target === node.id);
-      if (!hasEdges) {
-        console.warn(`Node ${node.id} is isolated`);
-      }
-    });
-
-    console.log(`Nodes: ${initialNodes.length}, Edges: ${validEdges.length}`);
 
     return validEdges.map(e => ({
       id: e.id,
       source: e.source,
       target: e.target,
       type: 'smoothstep',
-      animated: e.type === 'dotted' || e.type === 'dashed' || e.type === 'solid',
+      animated: e.type === 'dotted' || e.animated === true,
       style: { 
-        strokeDasharray: e.type === 'dotted' ? '5,5' : (e.type === 'dashed' ? '10,5' : undefined),
+        strokeDasharray: e.type === 'dashed' ? '5,5' : undefined,
         stroke: '#94a3b8',
         strokeWidth: 2
       },
@@ -124,9 +123,13 @@ export function ArchitectureDiagram({ nodes: initialNodes, edges: initialEdges }
       
       {/* Lane Labels */}
       <div className="absolute top-4 inset-x-0 flex justify-between px-20 pointer-events-none z-10 font-display font-bold text-slate-400 uppercase tracking-widest text-sm">
-        <div className="w-[300px] text-center">Collect & Ingest</div>
-        <div className="w-[300px] text-center">Process & Unify</div>
-        <div className="w-[300px] text-center">Engage & Activate</div>
+        <div className="w-[300px] text-center">COLLECT</div>
+        <div className="w-[300px] text-center">PROCESS</div>
+        <div className="w-[300px] text-center">ACTIVATE</div>
+      </div>
+      
+      <div className="absolute bottom-4 inset-x-0 text-center pointer-events-none z-10 font-display font-bold text-slate-400 uppercase tracking-widest text-sm opacity-50">
+        DATA & SERVICE
       </div>
 
       <ReactFlow

@@ -1903,5 +1903,3057 @@
     },
     "id": 1771577621786,
     "createdAt": "2026-02-20T08:53:41.786Z"
+  },
+  {
+    "companyName": "InnooRyzeLast",
+    "context": {
+      "companyName": "InnooRyzeLast",
+      "industry": "SaaS",
+      "businessModel": "B2B",
+      "region": "India",
+      "dataSources": [
+        "Website",
+        "Social Media"
+      ],
+      "toolsUsed": {
+        "crm": "Hubspot",
+        "marketingAutomation": "Hubspot",
+        "analytics": "Power BI",
+        "dataWarehouse": "BigQuery"
+      },
+      "activationChannels": [
+        "Email",
+        "Direct Mail"
+      ]
+    },
+    "output": {
+      "maturity": [
+        {
+          "stage": "Current",
+          "description": "The organization has basic data sources and tools with manual processes.",
+          "keyChanges": [
+            "Minimal integration of data sources",
+            "Dependency on manual reporting"
+          ],
+          "nodes": [
+            {
+              "id": "dataSource1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "crm1",
+              "type": "systemNode",
+              "label": "Hubspot CRM",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "dataWarehouse1",
+              "type": "dataNode",
+              "label": "BigQuery",
+              "lane": "data",
+              "tech": "BigQuery"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSource1",
+              "target": "crm1",
+              "type": "solid",
+              "label": "Data ingestion"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSource2",
+              "target": "crm1",
+              "type": "solid",
+              "label": "Data ingestion"
+            }
+          ]
+        },
+        {
+          "stage": "Crawl",
+          "description": "The organization starts integrating a data warehouse and automates processes.",
+          "keyChanges": [
+            "Introduction of data warehouse",
+            "Basic automation of data workflows"
+          ],
+          "nodes": [
+            {
+              "id": "dataSource1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "crm1",
+              "type": "systemNode",
+              "label": "Hubspot CRM",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "dataWarehouse1",
+              "type": "dataNode",
+              "label": "BigQuery",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "marketingAutomation1",
+              "type": "systemNode",
+              "label": "Hubspot Marketing Automation",
+              "lane": "process",
+              "tech": "Hubspot"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSource1",
+              "target": "crm1",
+              "type": "solid",
+              "label": "Data ingestion"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSource2",
+              "target": "crm1",
+              "type": "solid",
+              "label": "Data ingestion"
+            },
+            {
+              "id": "edge3",
+              "source": "crm1",
+              "target": "dataWarehouse1",
+              "type": "dashed",
+              "label": "Data export"
+            },
+            {
+              "id": "edge4",
+              "source": "dataWarehouse1",
+              "target": "marketingAutomation1",
+              "type": "dashed",
+              "label": "Trigger campaigns"
+            }
+          ]
+        },
+        {
+          "stage": "Walk",
+          "description": "The organization implements customer data platforms for targeted marketing.",
+          "keyChanges": [
+            "Adoption of CDP for segmented marketing",
+            "Enhanced data orchestration"
+          ],
+          "nodes": [
+            {
+              "id": "dataSource1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "crm1",
+              "type": "systemNode",
+              "label": "Hubspot CRM",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "dataWarehouse1",
+              "type": "dataNode",
+              "label": "BigQuery",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "marketingAutomation1",
+              "type": "systemNode",
+              "label": "Hubspot Marketing Automation",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "cdp1",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSource1",
+              "target": "crm1",
+              "type": "solid",
+              "label": "Data ingestion"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSource2",
+              "target": "crm1",
+              "type": "solid",
+              "label": "Data ingestion"
+            },
+            {
+              "id": "edge3",
+              "source": "crm1",
+              "target": "dataWarehouse1",
+              "type": "dashed",
+              "label": "Data export"
+            },
+            {
+              "id": "edge4",
+              "source": "dataWarehouse1",
+              "target": "marketingAutomation1",
+              "type": "dashed",
+              "label": "Trigger campaigns"
+            },
+            {
+              "id": "edge5",
+              "source": "dataWarehouse1",
+              "target": "cdp1",
+              "type": "solid",
+              "label": "Data synchronization"
+            }
+          ]
+        },
+        {
+          "stage": "Run",
+          "description": "The organization leverages real-time data and personalization across channels.",
+          "keyChanges": [
+            "Real-time campaign optimization",
+            "Seamless cross-channel integration"
+          ],
+          "nodes": [
+            {
+              "id": "dataSource1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "crm1",
+              "type": "systemNode",
+              "label": "Hubspot CRM",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "dataWarehouse1",
+              "type": "dataNode",
+              "label": "BigQuery",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "marketingAutomation1",
+              "type": "systemNode",
+              "label": "Hubspot Marketing Automation",
+              "lane": "process",
+              "tech": "Hubspot"
+            },
+            {
+              "id": "cdp1",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "N/A"
+            },
+            {
+              "id": "realTime1",
+              "type": "systemNode",
+              "label": "Real-Time Data Engine",
+              "lane": "process",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSource1",
+              "target": "crm1",
+              "type": "solid",
+              "label": "Data ingestion"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSource2",
+              "target": "crm1",
+              "type": "solid",
+              "label": "Data ingestion"
+            },
+            {
+              "id": "edge3",
+              "source": "crm1",
+              "target": "dataWarehouse1",
+              "type": "dashed",
+              "label": "Data export"
+            },
+            {
+              "id": "edge4",
+              "source": "dataWarehouse1",
+              "target": "marketingAutomation1",
+              "type": "dashed",
+              "label": "Trigger campaigns"
+            },
+            {
+              "id": "edge5",
+              "source": "dataWarehouse1",
+              "target": "cdp1",
+              "type": "solid",
+              "label": "Data synchronization"
+            },
+            {
+              "id": "edge6",
+              "source": "cdp1",
+              "target": "realTime1",
+              "type": "solid",
+              "label": "Real-time data update"
+            }
+          ]
+        }
+      ],
+      "useCases": [
+        {
+          "id": "useCase1",
+          "name": "Website Engagement Analytics",
+          "description": "Analyze visitor behavior on the website to optimize content and improve engagement.",
+          "goals": [
+            "Increase time spent on site",
+            "Reduce bounce rate"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Better understanding of user behavior",
+            "Increased site engagement"
+          ],
+          "channels": [
+            "Website"
+          ],
+          "dataRequired": [
+            "Website analytics data"
+          ],
+          "kpis": [
+            "Average session duration",
+            "Bounce rate"
+          ],
+          "challenges": [
+            "Implementing tracking mechanisms"
+          ],
+          "architectureComponentsUsed": [
+            "dataSource1",
+            "crm1",
+            "dataWarehouse1"
+          ],
+          "businessImpact": "Higher conversion rates and increased user satisfaction.",
+          "journeys": [
+            {
+              "id": "journey1",
+              "name": "Website Visitor Journey",
+              "trigger": "User visits website",
+              "outcome": "Improved content strategy",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "User lands on homepage"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "User navigates through pages"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "User engages with content"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Does user leave the page?"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "User exits the website"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase2",
+          "name": "Social Media Campaign Analysis",
+          "description": "Evaluate the effectiveness of social media campaigns to adjust strategies accordingly.",
+          "goals": [
+            "Increase ROI of social media ads",
+            "Enhance audience targeting"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Better performance insights",
+            "Enhanced targeting"
+          ],
+          "channels": [
+            "Social Media"
+          ],
+          "dataRequired": [
+            "Social media interaction data"
+          ],
+          "kpis": [
+            "Click-through rate",
+            "Conversion rate"
+          ],
+          "challenges": [
+            "Tracking social media interactions"
+          ],
+          "architectureComponentsUsed": [
+            "dataSource2",
+            "crm1",
+            "dataWarehouse1"
+          ],
+          "businessImpact": "More effective ad spend leading to higher conversions.",
+          "journeys": [
+            {
+              "id": "journey2",
+              "name": "Social Media User Interaction Journey",
+              "trigger": "User sees campaign ad",
+              "outcome": "Refined targeting criteria",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "User views social media ad"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "User interacts with ad"
+                },
+                {
+                  "id": "step3",
+                  "type": "decision",
+                  "label": "Did user visit landing page?"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "User engages with content on landing page"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "User exits the landing page"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase3",
+          "name": "Lead Scoring and Nurturing",
+          "description": "Implement score-based lead nurturing to prioritize follow-ups on leads.",
+          "goals": [
+            "Increase sales conversion rates",
+            "Shorten sales cycles"
+          ],
+          "audience": "Sales Team",
+          "benefits": [
+            "Prioritized leads",
+            "Improved sales efficiency"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Lead interaction and engagement data"
+          ],
+          "kpis": [
+            "Lead conversion rate",
+            "Average time to close"
+          ],
+          "challenges": [
+            "Establishing effective scoring criteria"
+          ],
+          "architectureComponentsUsed": [
+            "crm1",
+            "marketingAutomation1",
+            "dataWarehouse1"
+          ],
+          "businessImpact": "Boosted sales effectiveness through targeted follow-ups.",
+          "journeys": [
+            {
+              "id": "journey3",
+              "name": "Lead Nurturing Journey",
+              "trigger": "New lead enters the system",
+              "outcome": "Improved lead conversion rates",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Lead is captured in CRM"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Lead receives initial email"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Lead interacts with the email"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Does lead require further engagement?"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Lead moves to sales team or is nurtured further"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase4",
+          "name": "Targeted Email Campaigns",
+          "description": "Execute targeted email campaigns to increase open and click rates.",
+          "goals": [
+            "Increase email engagement rates",
+            "Enhance customer retention"
+          ],
+          "audience": "Existing Customers",
+          "benefits": [
+            "Improved campaign performance",
+            "Higher customer loyalty"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Email engagement data"
+          ],
+          "kpis": [
+            "Open rate",
+            "Click-through rate"
+          ],
+          "challenges": [
+            "Segmentation accuracy"
+          ],
+          "architectureComponentsUsed": [
+            "crm1",
+            "marketingAutomation1",
+            "dataWarehouse1"
+          ],
+          "businessImpact": "Increased retention rates and revenue per customer.",
+          "journeys": [
+            {
+              "id": "journey4",
+              "name": "Email Campaign Journey",
+              "trigger": "Email campaign launch",
+              "outcome": "Higher email engagement",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "List segment is created in CRM"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Email campaign is sent"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "User opens the email"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "User clicks on the call to action"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "User engages with the website"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase5",
+          "name": "Real-Time Personalization",
+          "description": "Utilize real-time data to personalize user experiences across channels.",
+          "goals": [
+            "Enhance user experience",
+            "Increase conversion rates"
+          ],
+          "audience": "All Users",
+          "benefits": [
+            "Greater engagement",
+            "Increased conversions"
+          ],
+          "channels": [
+            "Website",
+            "Email"
+          ],
+          "dataRequired": [
+            "User interaction data"
+          ],
+          "kpis": [
+            "Real-time engagement rate",
+            "Conversion rate"
+          ],
+          "challenges": [
+            "Integrating real-time data sources"
+          ],
+          "architectureComponentsUsed": [
+            "crm1",
+            "cdp1",
+            "realTime1"
+          ],
+          "businessImpact": "Improved user retention and satisfaction.",
+          "journeys": [
+            {
+              "id": "journey5",
+              "name": "Personalized User Experience Journey",
+              "trigger": "User interacts with website",
+              "outcome": "User receives tailored recommendations",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "User visits the website"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "User browses products"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Real-time data is analyzed"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "User receives personalized recommendations"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "User makes a purchase or interacts further"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase6",
+          "name": "Churn Prediction Model",
+          "description": "Develop a predictive model to identify churn risks and automate retention efforts.",
+          "goals": [
+            "Reduce customer churn",
+            "Enhance retention strategies"
+          ],
+          "audience": "Customer Success Team",
+          "benefits": [
+            "Proactive customer engagement",
+            "Lower churn rates"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Customer behavior data"
+          ],
+          "kpis": [
+            "Churn rate",
+            "Customer lifetime value"
+          ],
+          "challenges": [
+            "Building an accurate model"
+          ],
+          "architectureComponentsUsed": [
+            "crm1",
+            "dataWarehouse1",
+            "cdp1"
+          ],
+          "businessImpact": "Increased customer retention and satisfaction.",
+          "journeys": [
+            {
+              "id": "journey6",
+              "name": "Churn Prevention Journey",
+              "trigger": "Customer shows inactivity",
+              "outcome": "Enhanced retention strategies deployed",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Customer activity is monitored"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Inactivity triggers churn alert"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Retention campaign is launched"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Did customer engage with retention offers?"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Customer stays or churns"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "id": 1771588733746,
+    "createdAt": "2026-02-20T11:58:53.746Z"
+  },
+  {
+    "companyName": "Treffer Technologies",
+    "context": {
+      "companyName": "Treffer Technologies",
+      "industry": "SaaS",
+      "businessModel": "B2B",
+      "region": "India",
+      "dataSources": [
+        "Website",
+        "Call Center",
+        "IoT",
+        "Social Media"
+      ],
+      "toolsUsed": {
+        "crm": "Zoho CRM",
+        "marketingAutomation": "Zoho Marketing Plus",
+        "analytics": "GA4"
+      },
+      "activationChannels": [
+        "Email",
+        "Paid Media"
+      ]
+    },
+    "output": {
+      "maturity": [
+        {
+          "stage": "Current",
+          "description": "Treffer Technologies is currently using standard collection methods without advanced capabilities or integrations across channels.",
+          "keyChanges": [
+            "Basic data collection from website, call center, IoT, and social media.",
+            "Limited integration between marketing and sales data."
+          ],
+          "nodes": [
+            {
+              "id": "dataSource1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource2",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource3",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource4",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "system1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "system2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSource1",
+              "target": "system1",
+              "type": "solid",
+              "label": "Data flow from website"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSource2",
+              "target": "system1",
+              "type": "solid",
+              "label": "Data flow from Call Center"
+            }
+          ]
+        },
+        {
+          "stage": "Crawl",
+          "description": "Introduction of integrations between data sources and CRM for improved data handling.",
+          "keyChanges": [
+            "Begin integrating data from multiple sources.",
+            "Improved segmentation of collected data."
+          ],
+          "nodes": [
+            {
+              "id": "dataSource1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource2",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource3",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource4",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataWarehouse",
+              "type": "dataNode",
+              "label": "Data Warehouse",
+              "lane": "data",
+              "tech": "N/A"
+            },
+            {
+              "id": "system1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "system2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSource1",
+              "target": "dataWarehouse",
+              "type": "dashed",
+              "label": "Segment sync from website"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSource2",
+              "target": "dataWarehouse",
+              "type": "dashed",
+              "label": "Segment sync from Call Center"
+            },
+            {
+              "id": "edge3",
+              "source": "dataWarehouse",
+              "target": "system1",
+              "type": "solid",
+              "label": "Data flow to CRM"
+            }
+          ]
+        },
+        {
+          "stage": "Walk",
+          "description": "Establishment of a Customer Data Platform (CDP) for unified customer profiles.",
+          "keyChanges": [
+            "Integration of a CDP for better data management.",
+            "Improved targeting and personalization capabilities."
+          ],
+          "nodes": [
+            {
+              "id": "dataSource1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource2",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource3",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource4",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataWarehouse",
+              "type": "dataNode",
+              "label": "Data Warehouse",
+              "lane": "data",
+              "tech": "N/A"
+            },
+            {
+              "id": "system1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "system2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            },
+            {
+              "id": "system3",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSource1",
+              "target": "system3",
+              "type": "dashed",
+              "label": "Segment sync from website"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSource2",
+              "target": "system3",
+              "type": "dashed",
+              "label": "Segment sync from Call Center"
+            },
+            {
+              "id": "edge3",
+              "source": "dataSource3",
+              "target": "system3",
+              "type": "dashed",
+              "label": "Segment sync from IoT"
+            },
+            {
+              "id": "edge4",
+              "source": "dataWarehouse",
+              "target": "system1",
+              "type": "solid",
+              "label": "Data flow to CRM"
+            }
+          ]
+        },
+        {
+          "stage": "Run",
+          "description": "Full implementation of real-time data processing and personalization features.",
+          "keyChanges": [
+            "Real-time data processing and analytics established.",
+            "Advanced personalization capabilities through CDP."
+          ],
+          "nodes": [
+            {
+              "id": "dataSource1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource2",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource3",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSource4",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataWarehouse",
+              "type": "dataNode",
+              "label": "Data Warehouse",
+              "lane": "data",
+              "tech": "N/A"
+            },
+            {
+              "id": "system1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "system2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            },
+            {
+              "id": "system3",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "N/A"
+            },
+            {
+              "id": "realTimeSystem",
+              "type": "systemNode",
+              "label": "Real-Time Processing System",
+              "lane": "process",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSource1",
+              "target": "system3",
+              "type": "dotted",
+              "label": "Real-time data sync from website"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSource2",
+              "target": "system3",
+              "type": "dotted",
+              "label": "Real-time data sync from Call Center"
+            },
+            {
+              "id": "edge3",
+              "source": "dataWarehouse",
+              "target": "realTimeSystem",
+              "type": "solid",
+              "label": "Data flow to Real-Time System"
+            }
+          ]
+        }
+      ],
+      "useCases": [
+        {
+          "id": "useCase1",
+          "name": "Website Lead Generation",
+          "description": "Capture leads through the company website.",
+          "goals": [
+            "Increase lead generation",
+            "Enhance lead capture capabilities"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Increased conversion rates",
+            "Better segmentation"
+          ],
+          "channels": [
+            "Website",
+            "Email"
+          ],
+          "dataRequired": [
+            "Website traffic data",
+            "Form submissions"
+          ],
+          "kpis": [
+            "Lead conversion rate",
+            "Number of leads captured"
+          ],
+          "challenges": [
+            "User drop-off",
+            "Low form completion rates"
+          ],
+          "architectureComponentsUsed": [
+            "dataSource1",
+            "system2"
+          ],
+          "businessImpact": "Higher lead volume directly supporting sales.",
+          "journeys": [
+            {
+              "id": "journey1",
+              "name": "Lead Capture Journey",
+              "trigger": "Website visit",
+              "outcome": "Lead captured and entered into CRM",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "User visits website",
+                  "channel": "Website"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "User fills out form",
+                  "channel": "Website"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Form submission processed",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Lead qualifies?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Lead sent to CRM",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase2",
+          "name": "Omnichannel Customer Engagement",
+          "description": "Engaging customers across multiple channels.",
+          "goals": [
+            "Enhance customer interaction",
+            "Increase customer retention"
+          ],
+          "audience": "Sales and Customer Support Teams",
+          "benefits": [
+            "Higher customer satisfaction",
+            "Reduced churn"
+          ],
+          "channels": [
+            "Email",
+            "Call Center"
+          ],
+          "dataRequired": [
+            "Customer interaction data"
+          ],
+          "kpis": [
+            "Customer satisfaction score",
+            "Retention rate"
+          ],
+          "challenges": [
+            "Inconsistent messaging",
+            "Overwhelming the customer"
+          ],
+          "architectureComponentsUsed": [
+            "dataSource2",
+            "system1"
+          ],
+          "businessImpact": "Creating a cohesive customer experience leading to loyalty.",
+          "journeys": [
+            {
+              "id": "journey2",
+              "name": "Customer Engagement Journey",
+              "trigger": "Customer inquiry received",
+              "outcome": "Customer engaged and satisfied",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Customer contacts support",
+                  "channel": "Call Center"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Support agent obtains customer details",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Resolve customer issue",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Issue resolved?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Engagement follow-up via email",
+                  "channel": "Email"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase3",
+          "name": "Social Media Monitoring",
+          "description": "Monitoring and engaging with customers via social media.",
+          "goals": [
+            "Increase brand awareness",
+            "Quickly respond to customer feedback"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Improved brand perception",
+            "Faster response times"
+          ],
+          "channels": [
+            "Social Media"
+          ],
+          "dataRequired": [
+            "Social media mentions",
+            "Customer sentiment"
+          ],
+          "kpis": [
+            "Response time",
+            "Sentiment score"
+          ],
+          "challenges": [
+            "Negative feedback",
+            "Brand image management"
+          ],
+          "architectureComponentsUsed": [
+            "dataSource4",
+            "system2"
+          ],
+          "businessImpact": "Enhancement of the company's reputation in the market.",
+          "journeys": [
+            {
+              "id": "journey3",
+              "name": "Social Media Response Journey",
+              "trigger": "Customer mentions the brand",
+              "outcome": "Customer feels heard and valued",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Monitor social media",
+                  "channel": "Social Media"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Identify mentions",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Craft a response",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Post response",
+                  "channel": "Social Media"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Monitor customer sentiment post-response",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase4",
+          "name": "IoT Data Utilization",
+          "description": "Using IoT data for customer insights.",
+          "goals": [
+            "Enhance product offerings",
+            "Improve customer satisfaction"
+          ],
+          "audience": "Product Development Team",
+          "benefits": [
+            "Data-driven product enhancements",
+            "Timely updates to customers"
+          ],
+          "channels": [
+            "IoT"
+          ],
+          "dataRequired": [
+            "IoT data streams",
+            "Customer feedback"
+          ],
+          "kpis": [
+            "Customer satisfaction score",
+            "Product usage metrics"
+          ],
+          "challenges": [
+            "Data accuracy",
+            "Integration issues"
+          ],
+          "architectureComponentsUsed": [
+            "dataSource3",
+            "system3"
+          ],
+          "businessImpact": "Better alignment of products with customer needs.",
+          "journeys": [
+            {
+              "id": "journey4",
+              "name": "IoT Feedback Journey",
+              "trigger": "IoT device data received",
+              "outcome": "Insights for product team",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Receive IoT data",
+                  "channel": "IoT"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Analyze IoT data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Identify insights",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Share insights with product team",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Product adjustments made",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase5",
+          "name": "Targeted Email Campaigns",
+          "description": "Send personalized emails to targeted segments.",
+          "goals": [
+            "Improve email open rates",
+            "Enhance customer engagement"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Higher open and click rates",
+            "Better customer segmentation"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Customer behavior data",
+            "Segmentation data"
+          ],
+          "kpis": [
+            "Open rate",
+            "Click-through rate"
+          ],
+          "challenges": [
+            "Content relevance",
+            "List fatigue"
+          ],
+          "architectureComponentsUsed": [
+            "dataWarehouse",
+            "system2"
+          ],
+          "businessImpact": "Boost in overall marketing performance.",
+          "journeys": [
+            {
+              "id": "journey5",
+              "name": "Email Campaign Journey",
+              "trigger": "Email campaign creation",
+              "outcome": "Emails sent to targeted segments",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Identify target segments",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Create email content",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Schedule email campaign",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Send email to segments",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Analyze email performance",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "useCase6",
+          "name": "Customer Insights Dashboard",
+          "description": "Create a dashboard for visualizing customer data.",
+          "goals": [
+            "Centralize customer data",
+            "Enhance data-driven decision making"
+          ],
+          "audience": "Management Team",
+          "benefits": [
+            "Real-time insights",
+            "Informed decision making"
+          ],
+          "channels": [
+            "Dashboard"
+          ],
+          "dataRequired": [
+            "Aggregated customer data"
+          ],
+          "kpis": [
+            "Data retrieval speed",
+            "User satisfaction score"
+          ],
+          "challenges": [
+            "Data silos",
+            "User training"
+          ],
+          "architectureComponentsUsed": [
+            "dataWarehouse",
+            "system3"
+          ],
+          "businessImpact": "Improved strategic insights leading to better business outcomes.",
+          "journeys": [
+            {
+              "id": "journey6",
+              "name": "Dashboard Creation Journey",
+              "trigger": "Need for insights arises",
+              "outcome": "Dashboards created for data visualization",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Identify key metrics",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Gather data from warehouse",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Create dashboard layout",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Populate dashboard with data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Present dashboard to management",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "id": 1771819429992,
+    "createdAt": "2026-02-23T04:03:49.992Z"
+  },
+  {
+    "companyName": "InnooRyze",
+    "context": {
+      "companyName": "InnooRyze",
+      "industry": "SaaS",
+      "businessModel": "B2B",
+      "region": "India",
+      "dataSources": [
+        "Website",
+        "Social Media"
+      ],
+      "toolsUsed": {
+        "crm": "Hubspot",
+        "marketingAutomation": "Hubspot",
+        "analytics": "GA4"
+      },
+      "activationChannels": [
+        "Email",
+        "Direct Mail"
+      ]
+    },
+    "output": {
+      "maturity": [
+        {
+          "stage": "Current",
+          "description": "The organization is primarily using basic data sources and tools without strong integration.",
+          "keyChanges": [
+            "Basic data collection on website and social media",
+            "Use of HubSpot for CRM and marketing automation"
+          ],
+          "nodes": [
+            {
+              "id": "sourceNode1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "sourceNode2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "systemNode1",
+              "type": "systemNode",
+              "label": "HubSpot CRM",
+              "lane": "process",
+              "tech": "HubSpot"
+            },
+            {
+              "id": "systemNode2",
+              "type": "systemNode",
+              "label": "HubSpot Marketing Automation",
+              "lane": "process",
+              "tech": "HubSpot"
+            },
+            {
+              "id": "dataNode1",
+              "type": "dataNode",
+              "label": "Google Analytics 4",
+              "lane": "data",
+              "tech": "GA4"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "sourceNode1",
+              "target": "systemNode1",
+              "type": "solid"
+            },
+            {
+              "id": "edge2",
+              "source": "sourceNode2",
+              "target": "systemNode1",
+              "type": "solid"
+            },
+            {
+              "id": "edge3",
+              "source": "systemNode1",
+              "target": "dataNode1",
+              "type": "solid"
+            }
+          ]
+        },
+        {
+          "stage": "Crawl",
+          "description": "The organization begins integrating more data sources and tools for enhanced insights.",
+          "keyChanges": [
+            "Added integrated data sync between sources",
+            "Basic reporting features enabled"
+          ],
+          "nodes": [
+            {
+              "id": "sourceNode3",
+              "type": "sourceNode",
+              "label": "Email Engagement",
+              "lane": "collect",
+              "tech": "HubSpot"
+            },
+            {
+              "id": "systemNode3",
+              "type": "systemNode",
+              "label": "Data Warehouse",
+              "lane": "data",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge4",
+              "source": "sourceNode3",
+              "target": "systemNode1",
+              "type": "dashed"
+            },
+            {
+              "id": "edge5",
+              "source": "systemNode1",
+              "target": "systemNode3",
+              "type": "dashed"
+            }
+          ]
+        },
+        {
+          "stage": "Walk",
+          "description": "The organization now leverages a Customer Data Platform to unify data and enable advanced analytics.",
+          "keyChanges": [
+            "Step towards full data integration and personalization",
+            "Enhanced customer insights and targeting capabilities"
+          ],
+          "nodes": [
+            {
+              "id": "systemNode4",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "Segment"
+            },
+            {
+              "id": "channelNode1",
+              "type": "channelNode",
+              "label": "SMS",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge6",
+              "source": "systemNode3",
+              "target": "systemNode4",
+              "type": "solid"
+            },
+            {
+              "id": "edge7",
+              "source": "systemNode4",
+              "target": "channelNode1",
+              "type": "solid"
+            }
+          ]
+        },
+        {
+          "stage": "Run",
+          "description": "Full integration and real-time capabilities are achieved, ensuring operation at peak efficiency.",
+          "keyChanges": [
+            "Real-time customer journey tracking",
+            "Advanced personalization and analytics"
+          ],
+          "nodes": [
+            {
+              "id": "decisionNode1",
+              "type": "decisionNode",
+              "label": "Customer Segmentation Engine",
+              "lane": "process",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge8",
+              "source": "systemNode4",
+              "target": "decisionNode1",
+              "type": "dotted"
+            },
+            {
+              "id": "edge9",
+              "source": "decisionNode1",
+              "target": "channelNode1",
+              "type": "solid"
+            }
+          ]
+        }
+      ],
+      "useCases": [
+        {
+          "id": "uc1",
+          "name": "Lead Generation",
+          "description": "Automate the lead capture process from website and social media.",
+          "goals": [
+            "Increase lead volume",
+            "Streamline lead qualification"
+          ],
+          "audience": "B2B Marketing Teams",
+          "benefits": [
+            "Improved lead tracking",
+            "Time-saving in lead processing"
+          ],
+          "channels": [
+            "Email",
+            "Direct Mail"
+          ],
+          "dataRequired": [
+            "Website data",
+            "Social media analytics"
+          ],
+          "kpis": [
+            "Number of leads generated",
+            "Lead conversion rate"
+          ],
+          "challenges": [
+            "Ensuring data accuracy",
+            "Managing diverse data sources"
+          ],
+          "architectureComponentsUsed": [
+            "sourceNode1",
+            "sourceNode2",
+            "systemNode1"
+          ],
+          "businessImpact": "Increased lead acquisition and visibility into lead sources.",
+          "journeys": [
+            {
+              "id": "journey1",
+              "name": "Lead Capture Journey",
+              "trigger": "New visitor on website",
+              "outcome": "Lead captured and added to CRM",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Visitor lands on site"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Collect visitor info",
+                  "channel": "Website"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Submit lead form",
+                  "channel": "Website"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Lead info sent to HubSpot",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Lead is qualified in HubSpot",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "uc2",
+          "name": "Email Campaign Analysis",
+          "description": "Analyze email campaign performance to improve future campaigns.",
+          "goals": [
+            "Increase email engagement",
+            "Refine campaign strategies"
+          ],
+          "audience": "Marketing Analysts",
+          "benefits": [
+            "Detailed insights into campaign performance",
+            "Optimized email content"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Email engagement statistics",
+            "Campaign metrics"
+          ],
+          "kpis": [
+            "Open rate",
+            "Click-through rate"
+          ],
+          "challenges": [
+            "Data fragmentation",
+            "Understanding audience behavior"
+          ],
+          "architectureComponentsUsed": [
+            "sourceNode3",
+            "dataNode1"
+          ],
+          "businessImpact": "Enhanced email strategy leading to better engagement rates.",
+          "journeys": [
+            {
+              "id": "journey2",
+              "name": "Email Campaign Review",
+              "trigger": "Campaign completion",
+              "outcome": "Email performance report generated",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Campaign is sent"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Collect engagement data",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Analyze performance in GA4",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Compile report in HubSpot",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Insights for future campaigns ready",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "uc3",
+          "name": "Customer Segmentation",
+          "description": "Improve customer targeting through advanced segmentation.",
+          "goals": [
+            "Increase conversion rates",
+            "Enhance personalization efforts"
+          ],
+          "audience": "B2B Sales Teams",
+          "benefits": [
+            "Targeted messaging",
+            "Improved sales performance"
+          ],
+          "channels": [
+            "Email",
+            "SMS"
+          ],
+          "dataRequired": [
+            "Customer purchase history",
+            "Engagement data"
+          ],
+          "kpis": [
+            "Conversion rate",
+            "Customer retention rate"
+          ],
+          "challenges": [
+            "Creating effective segments",
+            "Balancing privacy concerns"
+          ],
+          "architectureComponentsUsed": [
+            "systemNode4",
+            "dataNode1"
+          ],
+          "businessImpact": "More effective marketing campaigns resulting in higher sales.",
+          "journeys": [
+            {
+              "id": "journey3",
+              "name": "Segmentation Process",
+              "trigger": "New data input",
+              "outcome": "Customers segmented based on behavior",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "New data available from CRM"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Analyze customer behavior",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "decision",
+                  "label": "Identify customer segments",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Sync segments with HubSpot",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Segments ready for targeting",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "uc4",
+          "name": "Real-Time Engagement",
+          "description": "Engage customers in real-time across multiple channels.",
+          "goals": [
+            "Increase engagement rates",
+            "Improve customer experience"
+          ],
+          "audience": "B2B Customers",
+          "benefits": [
+            "Instant responses",
+            "Higher customer satisfaction"
+          ],
+          "channels": [
+            "Email",
+            "SMS"
+          ],
+          "dataRequired": [
+            "User behavior data",
+            "Real-time analytics"
+          ],
+          "kpis": [
+            "Engagement rate",
+            "Response time"
+          ],
+          "challenges": [
+            "Maintaining real-time capabilities",
+            "Handling high data volumes"
+          ],
+          "architectureComponentsUsed": [
+            "decisionNode1",
+            "systemNode4"
+          ],
+          "businessImpact": "Higher engagement rates and enhanced user satisfaction.",
+          "journeys": [
+            {
+              "id": "journey4",
+              "name": "Real-Time Response Journey",
+              "trigger": "Customer interacts with a campaign",
+              "outcome": "Instant personalized response sent",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "User action detected"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Analyze user data in real-time",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "decision",
+                  "label": "Determine user intent",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Send personalized message",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "User receives response",
+                  "channel": "Email"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "uc5",
+          "name": "Customer Journey Optimization",
+          "description": "Refine customer journeys for improved acquisition and retention.",
+          "goals": [
+            "Optimize touchpoints",
+            "Enhance user experience"
+          ],
+          "audience": "Product Managers",
+          "benefits": [
+            "Better understanding of user needs",
+            "Increased conversion rates"
+          ],
+          "channels": [
+            "Email",
+            "Direct Mail"
+          ],
+          "dataRequired": [
+            "Customer feedback",
+            "Behavior analytics"
+          ],
+          "kpis": [
+            "Customer satisfaction score",
+            "Conversion rate"
+          ],
+          "challenges": [
+            "Identifying key touchpoints",
+            "Balancing user insights with business goals"
+          ],
+          "architectureComponentsUsed": [
+            "systemNode4",
+            "dataNode1"
+          ],
+          "businessImpact": "Refined customer experiences leading to better retention rates.",
+          "journeys": [
+            {
+              "id": "journey5",
+              "name": "Customer Feedback Loop",
+              "trigger": "Post-purchase survey",
+              "outcome": "Insights gathered for journey refinement",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Customer completes purchase"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Send feedback survey",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Collect survey responses",
+                  "channel": "Direct Mail"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Analyze feedback data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Recommendations for journey improvement",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "uc6",
+          "name": "Nurture Campaign Automation",
+          "description": "Create automated nurture campaigns based on customer behavior.",
+          "goals": [
+            "Increase customer retention",
+            "Improve sales conversion"
+          ],
+          "audience": "Marketing Automation Teams",
+          "benefits": [
+            "Automated touchpoints",
+            "Improved targeting"
+          ],
+          "channels": [
+            "Email",
+            "SMS"
+          ],
+          "dataRequired": [
+            "Engagement history",
+            "Customer preferences"
+          ],
+          "kpis": [
+            "Retention rate",
+            "Engagement rate"
+          ],
+          "challenges": [
+            "Creating tailored content",
+            "Managing automation workflows"
+          ],
+          "architectureComponentsUsed": [
+            "systemNode4",
+            "decisionNode1"
+          ],
+          "businessImpact": "Continuous engagement leading to higher sales conversions.",
+          "journeys": [
+            {
+              "id": "journey6",
+              "name": "Nurture Campaign Workflow",
+              "trigger": "New customer registered",
+              "outcome": "Customer placed into nurturing sequence",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Customer registration completed"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Send welcome email",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Analyze customer interests",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Determine next nurture step",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Nurturing sequence initiated",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "id": 1771819922611,
+    "createdAt": "2026-02-23T04:12:02.611Z"
+  },
+  {
+    "companyName": "Treffer Technologies",
+    "context": {
+      "companyName": "Treffer Technologies",
+      "industry": "Manufacturing",
+      "businessModel": "B2B",
+      "region": "India",
+      "dataSources": [
+        "Website",
+        "Social Media",
+        "Call Center",
+        "IoT"
+      ],
+      "toolsUsed": {
+        "crm": "Zoho CRM",
+        "marketingAutomation": "Zoho Marketing Plus",
+        "analytics": "GA4"
+      },
+      "activationChannels": [
+        "Paid Media"
+      ]
+    },
+    "output": {
+      "maturity": [
+        {
+          "stage": "Current",
+          "description": "The organization is currently using basic tools for managing customer relationships and marketing campaigns.",
+          "keyChanges": [
+            "Limited data integration across sources.",
+            "Single-channel engagement mainly through paid media."
+          ],
+          "nodes": [
+            {
+              "id": "ds1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "ds2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "ds3",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "ds4",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "sys1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "sys2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            },
+            {
+              "id": "anal1",
+              "type": "dataNode",
+              "label": "GA4",
+              "lane": "data",
+              "tech": "GA4"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "ds1",
+              "target": "sys1",
+              "type": "solid",
+              "label": "Web leads"
+            },
+            {
+              "id": "edge2",
+              "source": "ds2",
+              "target": "sys2",
+              "type": "solid",
+              "label": "Social engagement data"
+            },
+            {
+              "id": "edge3",
+              "source": "ds3",
+              "target": "sys1",
+              "type": "solid",
+              "label": "Call data"
+            },
+            {
+              "id": "edge4",
+              "source": "ds4",
+              "target": "sys2",
+              "type": "solid",
+              "label": "IoT device data"
+            }
+          ]
+        },
+        {
+          "stage": "Crawl",
+          "description": "Integration of multi-channel data into the CRM, basic segmentation for email campaigns.",
+          "keyChanges": [
+            "Initiated data integration from multiple sources.",
+            "Started using segmentation for engagement strategies."
+          ],
+          "nodes": [
+            {
+              "id": "ds1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "ds2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "sys1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "sys2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            },
+            {
+              "id": "data1",
+              "type": "dataNode",
+              "label": "Data Warehouse",
+              "lane": "data",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "ds1",
+              "target": "sys1",
+              "type": "solid",
+              "label": "Web leads"
+            },
+            {
+              "id": "edge2",
+              "source": "ds2",
+              "target": "data1",
+              "type": "dashed",
+              "label": "Data storage"
+            },
+            {
+              "id": "edge3",
+              "source": "data1",
+              "target": "sys1",
+              "type": "solid",
+              "label": "Segmentation data"
+            }
+          ]
+        },
+        {
+          "stage": "Walk",
+          "description": "Implementation of a Customer Data Platform (CDP) for better personalization and multi-channel engagement.",
+          "keyChanges": [
+            "Utilized a CDP for enriched customer profiling.",
+            "Multi-channel marketing campaigns with personalized messaging."
+          ],
+          "nodes": [
+            {
+              "id": "ds1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "ds2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "sys1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "sys2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            },
+            {
+              "id": "sys3",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "N/A"
+            },
+            {
+              "id": "data1",
+              "type": "dataNode",
+              "label": "Data Warehouse",
+              "lane": "data",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "ds1",
+              "target": "sys1",
+              "type": "solid",
+              "label": "Web leads"
+            },
+            {
+              "id": "edge2",
+              "source": "ds2",
+              "target": "system3",
+              "type": "solid",
+              "label": "Social engagement data"
+            },
+            {
+              "id": "edge3",
+              "source": "ds2",
+              "target": "data1",
+              "type": "dotted",
+              "label": "Real-time data sync"
+            },
+            {
+              "id": "edge4",
+              "source": "data1",
+              "target": "sys3",
+              "type": "solid",
+              "label": "Customer profiles"
+            }
+          ]
+        },
+        {
+          "stage": "Run",
+          "description": "Real-time data integration allowing personalized, predictive marketing across all channels.",
+          "keyChanges": [
+            "Implemented machine learning for predictive insights.",
+            "Comprehensive engagement through all channels based on real-time data."
+          ],
+          "nodes": [
+            {
+              "id": "ds1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "ds2",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "sys1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "sys2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            },
+            {
+              "id": "sys3",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "N/A"
+            },
+            {
+              "id": "data1",
+              "type": "dataNode",
+              "label": "Data Warehouse",
+              "lane": "data",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "ds1",
+              "target": "sys3",
+              "type": "solid",
+              "label": "Personalized data"
+            },
+            {
+              "id": "edge2",
+              "source": "ds2",
+              "target": "sys2",
+              "type": "dashed",
+              "label": "Data sync"
+            },
+            {
+              "id": "edge3",
+              "source": "data1",
+              "target": "sys1",
+              "type": "solid",
+              "label": "Comprehensive customer insights"
+            },
+            {
+              "id": "edge4",
+              "source": "sys3",
+              "target": "sys2",
+              "type": "solid",
+              "label": "Segmentation data"
+            }
+          ]
+        }
+      ],
+      "useCases": [
+        {
+          "id": "uc1",
+          "name": "Lead Generation via Website",
+          "description": "Capture leads directly through the website and enter them into the CRM.",
+          "goals": [
+            "Increase lead capture",
+            "Improve lead quality"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Automated lead capture",
+            "Better tracking of website interactions"
+          ],
+          "channels": [
+            "Website"
+          ],
+          "dataRequired": [
+            "Website interactions",
+            "Lead form submissions"
+          ],
+          "kpis": [
+            "Number of leads captured",
+            "Lead conversion rate"
+          ],
+          "challenges": [
+            "Website abandonment",
+            "Data quality issues"
+          ],
+          "architectureComponentsUsed": [
+            "ds1",
+            "sys1"
+          ],
+          "businessImpact": "Increased sales opportunities through more identified leads.",
+          "journeys": [
+            {
+              "id": "journey1",
+              "name": "Website Lead Capturing",
+              "trigger": "User visits the website",
+              "outcome": "Lead captured and entered into CRM",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "User visits landing page",
+                  "channel": "Website"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "User fills lead form",
+                  "channel": "Website"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Lead is captured in Zoho CRM",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Is Lead Valid?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Lead entered into sales funnel",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "User accesses the website.",
+            "exitCriteria": "Lead is qualified.",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc2",
+          "name": "Social Media Engagement",
+          "description": "Capture leads and engage through social media interactions.",
+          "goals": [
+            "Build brand awareness",
+            "Engage potential customers"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Increased engagement",
+            "Enhanced brand visibility"
+          ],
+          "channels": [
+            "Social Media"
+          ],
+          "dataRequired": [
+            "Social media interactions",
+            "Lead mentions"
+          ],
+          "kpis": [
+            "Engagement rate",
+            "Social shares"
+          ],
+          "challenges": [
+            "Monitoring multiple platforms",
+            "Response timing"
+          ],
+          "architectureComponentsUsed": [
+            "ds2",
+            "sys2"
+          ],
+          "businessImpact": "Enhanced brand reach leading to more leads.",
+          "journeys": [
+            {
+              "id": "journey2",
+              "name": "Social Media Lead Engagement",
+              "trigger": "User interacts on social media posts",
+              "outcome": "Lead generated through social engagement",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "User comments on a post",
+                  "channel": "Social Media"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Marketing team responds",
+                  "channel": "Social Media"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "User fills out lead form",
+                  "channel": "Social Media"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Is User Valid Lead?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Lead entered into CRM",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "User interacts with social media content.",
+            "exitCriteria": "Lead is captured.",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc3",
+          "name": "Call Center Efficient Management",
+          "description": "Manage and track customer interactions through the call center.",
+          "goals": [
+            "Improve call resolution",
+            "Increase customer satisfaction"
+          ],
+          "audience": "Customer Support Team",
+          "benefits": [
+            "Better tracking of customer queries",
+            "Faster resolutions"
+          ],
+          "channels": [
+            "Call Center"
+          ],
+          "dataRequired": [
+            "Call logs",
+            "Customer feedback"
+          ],
+          "kpis": [
+            "Call resolution time",
+            "Customer satisfaction score"
+          ],
+          "challenges": [
+            "High call volume",
+            "Quality assurance"
+          ],
+          "architectureComponentsUsed": [
+            "ds3",
+            "sys1"
+          ],
+          "businessImpact": "Higher customer retention due to improved service.",
+          "journeys": [
+            {
+              "id": "journey3",
+              "name": "Call Center Customer Interaction",
+              "trigger": "Customer calls for support",
+              "outcome": "Issue logged and resolved",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Customer initiates call",
+                  "channel": "Call Center"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Agent logs issue in CRM",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Agent resolves issue",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Is Customer Satisfied?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Feedback recorded",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Customer contacts the call center.",
+            "exitCriteria": "Issue resolved.",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc4",
+          "name": "IoT Data Utilization",
+          "description": "Leverage IoT device data for enhanced customer insights and automation.",
+          "goals": [
+            "Optimize operations",
+            "Predictive maintenance"
+          ],
+          "audience": "Operations Team",
+          "benefits": [
+            "Improved decision-making",
+            "Reduced downtimes"
+          ],
+          "channels": [
+            "IoT"
+          ],
+          "dataRequired": [
+            "IoT device logs",
+            "Usage statistics"
+          ],
+          "kpis": [
+            "Downtime reduction",
+            "Cost savings"
+          ],
+          "challenges": [
+            "Data overload",
+            "Integration with existing systems"
+          ],
+          "architectureComponentsUsed": [
+            "ds4",
+            "sys3"
+          ],
+          "businessImpact": "Increased operational efficiency through data-driven insights.",
+          "journeys": [
+            {
+              "id": "journey4",
+              "name": "IoT Data Collection and Analysis",
+              "trigger": "IoT sensor sends data",
+              "outcome": "Data processed for insights",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "IoT device registers usage",
+                  "channel": "IoT"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Data sent to CDP",
+                  "channel": "IoT"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Data processed for insights",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Is Maintenance Required?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Recommendations sent to operations team",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "IoT data becomes available.",
+            "exitCriteria": "Maintenance is actioned.",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc5",
+          "name": "Personalization in Marketing",
+          "description": "Create personalized campaign strategies using integrated customer data.",
+          "goals": [
+            "Enhance customer experience",
+            "Increase conversion rates"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Higher engagement",
+            "More effective campaigns"
+          ],
+          "channels": [
+            "Email",
+            "Social Media"
+          ],
+          "dataRequired": [
+            "Complete customer profiles",
+            "Behavioral data"
+          ],
+          "kpis": [
+            "Email open rates",
+            "Click-through rates"
+          ],
+          "challenges": [
+            "Segmenting audience properly",
+            "Maintaining data integrity"
+          ],
+          "architectureComponentsUsed": [
+            "sys2",
+            "sys3"
+          ],
+          "businessImpact": "Improved customer loyalty and retention through tailored marketing efforts.",
+          "journeys": [
+            {
+              "id": "journey5",
+              "name": "Personalized Campaign Execution",
+              "trigger": "New product launch",
+              "outcome": "Engagement increases through personalized outreach",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Market analysis performed",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Customer segments identified",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Targeted emails sent",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "Did customer engage?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Feedback gathered to refine future campaigns",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Campaign initiated.",
+            "exitCriteria": "Feedback gathered.",
+            "steps": []
+          }
+        },
+        {
+          "id": "uc6",
+          "name": "Analytics and Reporting",
+          "description": "Utilize insights and metrics to optimize marketing strategies.",
+          "goals": [
+            "Track performance",
+            "Make data-driven decisions"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Better insights into customer behavior",
+            "Improved campaign effectiveness"
+          ],
+          "channels": [
+            "Analytics"
+          ],
+          "dataRequired": [
+            "Campaign performance data",
+            "Customer feedback"
+          ],
+          "kpis": [
+            "ROI on campaigns",
+            "Overall engagement metrics"
+          ],
+          "challenges": [
+            "Making sense of complex data",
+            "Timely reporting"
+          ],
+          "architectureComponentsUsed": [
+            "anal1",
+            "sys1"
+          ],
+          "businessImpact": "Enhanced understanding of campaign effectiveness leading to improved future strategies.",
+          "journeys": [
+            {
+              "id": "journey6",
+              "name": "Monitoring Campaign Performance",
+              "trigger": "Campaign execution completed",
+              "outcome": "Insights gained for future optimization",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Performance data collected from campaigns",
+                  "channel": "Analytics"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Data analyzed and insights generated",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Recommendations formulated",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "decision",
+                  "label": "What changes to implement?",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Updated strategies implemented",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Campaign runs successfully.",
+            "exitCriteria": "Strategies updated based on data.",
+            "steps": []
+          }
+        }
+      ]
+    },
+    "id": 1771828665924,
+    "createdAt": "2026-02-23T06:37:45.924Z"
   }
 ]
