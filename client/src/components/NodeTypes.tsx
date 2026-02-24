@@ -9,7 +9,11 @@ import {
   ArrowRight,
   ShieldCheck,
   Zap,
-  Layout
+  Layout,
+  Mail,
+  BarChart3,
+  Cpu,
+  Users
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -17,16 +21,27 @@ import { cn } from '@/lib/utils';
 // SHARED STYLES
 // ==========================================
 
-const baseNodeStyle = "px-4 py-3 rounded-xl border-2 shadow-sm min-w-[150px] transition-all duration-300 hover:shadow-md bg-white";
-const handleStyle = "w-2 h-2 !bg-muted-foreground border-2 border-white transition-colors hover:!bg-primary";
+const baseNodeStyle = "px-4 py-3 rounded-xl border-2 shadow-sm min-w-[160px] transition-all duration-300 hover:shadow-md bg-white";
+const handleStyle = "w-2 h-2 !bg-slate-400 border-2 border-white transition-colors hover:!bg-primary";
 
 // ==========================================
 // ICON MAPPER
 // ==========================================
 
-const getIcon = (type: string, tech?: string) => {
-  if (tech?.toLowerCase().includes("database") || type === "dataNode") return Database;
-  if (tech?.toLowerCase().includes("api") || type === "systemNode") return Server;
+const getIcon = (type: string, tech?: string, label?: string) => {
+  const l = label?.toLowerCase() || "";
+  const t = tech?.toLowerCase() || "";
+  
+  if (l.includes("website")) return Globe;
+  if (l.includes("mobile")) return Layout;
+  if (l.includes("crm") || l.includes("salesforce")) return Users;
+  if (l.includes("cdp") || l.includes("segment")) return Database;
+  if (l.includes("email") || l.includes("braze")) return Mail;
+  if (l.includes("analytics") || l.includes("adobe")) return BarChart3;
+  if (l.includes("ai") || l.includes("ml")) return Cpu;
+  
+  if (t.includes("database") || type === "dataNode") return Database;
+  if (t.includes("api") || type === "systemNode") return Server;
   if (type === "sourceNode") return Globe;
   if (type === "channelNode") return Share2;
   if (type === "entryNode") return User;
@@ -41,20 +56,22 @@ const getIcon = (type: string, tech?: string) => {
 // ==========================================
 
 export function SystemNode({ data }: NodeProps) {
-  const Icon = getIcon("systemNode", data.tech as string);
+  const Icon = getIcon("systemNode", data.tech as string, data.label as string);
   
   return (
-    <div className={cn(baseNodeStyle, "border-primary/20 hover:border-primary")}>
+    <div className={cn(baseNodeStyle, "border-slate-200 hover:border-primary group")}>
       <Handle type="target" position={Position.Left} className={handleStyle} />
       
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-primary/10 text-primary">
+        <div className="p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
           <Icon className="w-5 h-5" />
         </div>
         <div>
-          <div className="text-xs font-bold text-primary uppercase tracking-wider mb-0.5">System</div>
-          <div className="font-semibold text-sm text-foreground">{data.label}</div>
-          {data.tech && <div className="text-[10px] text-muted-foreground mt-0.5">{data.tech}</div>}
+          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
+            {data.lane === 'process' ? 'Process' : 'System'}
+          </div>
+          <div className="font-bold text-sm text-slate-900 leading-tight">{data.label}</div>
+          {data.tech && <div className="text-[10px] text-slate-500 mt-0.5 font-medium">{data.tech}</div>}
         </div>
       </div>
 
@@ -64,14 +81,18 @@ export function SystemNode({ data }: NodeProps) {
 }
 
 export function DataNode({ data }: NodeProps) {
+  const Icon = getIcon("dataNode", data.tech as string, data.label as string);
   return (
-    <div className={cn(baseNodeStyle, "border-blue-200 hover:border-blue-500 rounded-full")}>
+    <div className={cn(baseNodeStyle, "border-blue-100 bg-blue-50/30 hover:border-blue-400 group")}>
       <Handle type="target" position={Position.Left} className={handleStyle} />
-      <div className="flex items-center gap-3 justify-center">
-        <div className="p-1.5 rounded-full bg-blue-100 text-blue-600">
-          <Database className="w-4 h-4" />
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-200 transition-colors">
+          <Icon className="w-4 h-4" />
         </div>
-        <div className="font-medium text-sm text-foreground text-center">{data.label}</div>
+        <div>
+          <div className="text-[10px] font-bold text-blue-400 uppercase tracking-wider">Foundation</div>
+          <div className="font-bold text-sm text-slate-900">{data.label}</div>
+        </div>
       </div>
       <Handle type="source" position={Position.Right} className={handleStyle} />
     </div>
@@ -79,14 +100,18 @@ export function DataNode({ data }: NodeProps) {
 }
 
 export function ChannelNode({ data }: NodeProps) {
+  const Icon = getIcon("channelNode", data.tech as string, data.label as string);
   return (
-    <div className={cn(baseNodeStyle, "border-orange-200 hover:border-orange-500 bg-orange-50/50")}>
+    <div className={cn(baseNodeStyle, "border-orange-100 bg-orange-50/30 hover:border-orange-400 group")}>
       <Handle type="target" position={Position.Left} className={handleStyle} />
-      <div className="flex flex-col items-center gap-2">
-        <div className="p-2 rounded-lg bg-orange-100 text-orange-600">
-          <Share2 className="w-5 h-5" />
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-orange-100 text-orange-600 group-hover:bg-orange-200 transition-colors">
+          <Icon className="w-5 h-5" />
         </div>
-        <div className="font-semibold text-sm text-center">{data.label}</div>
+        <div>
+          <div className="text-[10px] font-bold text-orange-400 uppercase tracking-wider">Channel</div>
+          <div className="font-bold text-sm text-slate-900">{data.label}</div>
+        </div>
       </div>
       <Handle type="source" position={Position.Right} className={handleStyle} />
     </div>

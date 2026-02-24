@@ -8383,5 +8383,798 @@
     },
     "id": 1771915857368,
     "createdAt": "2026-02-24T06:50:57.368Z"
+  },
+  {
+    "companyName": "Treffer Technologies",
+    "context": {
+      "companyName": "Treffer Technologies",
+      "industry": "Manufacturing",
+      "businessModel": "B2B",
+      "region": "India",
+      "dataSources": [
+        "Website",
+        "Social Media",
+        "IoT",
+        "Call Center"
+      ],
+      "toolsUsed": {
+        "crm": "Zoho CRM",
+        "marketingAutomation": "Zoho Marketing Plus",
+        "analytics": "GA4",
+        "dataWarehouse": "BigQuery"
+      },
+      "activationChannels": [
+        "Email",
+        "Paid Media"
+      ]
+    },
+    "output": {
+      "maturity": [
+        {
+          "stage": "Current",
+          "description": "The organization is primarily collecting data from various sources such as website, social media, IoT devices, and call center interactions without a centralized system for management.",
+          "keyChanges": [
+            "Establishment of data collection methods.",
+            "Basic analytics in place using GA4."
+          ],
+          "nodes": [
+            {
+              "id": "dataSourceWebsite",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceSocialMedia",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceIoT",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceCallCenter",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            }
+          ],
+          "edges": []
+        },
+        {
+          "stage": "Crawl",
+          "description": "Implementation of Zoho CRM and initiation of data integration from various sources to enhance customer relationship management.",
+          "keyChanges": [
+            "Integrated data from all sources into Zoho CRM.",
+            "Basic marketing automation with Zoho Marketing Plus."
+          ],
+          "nodes": [
+            {
+              "id": "dataSourceWebsite",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceSocialMedia",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceIoT",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceCallCenter",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "crmZoho",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge1",
+              "source": "dataSourceWebsite",
+              "target": "crmZoho",
+              "type": "solid"
+            },
+            {
+              "id": "edge2",
+              "source": "dataSourceSocialMedia",
+              "target": "crmZoho",
+              "type": "solid"
+            },
+            {
+              "id": "edge3",
+              "source": "dataSourceIoT",
+              "target": "crmZoho",
+              "type": "solid"
+            },
+            {
+              "id": "edge4",
+              "source": "dataSourceCallCenter",
+              "target": "crmZoho",
+              "type": "solid"
+            }
+          ]
+        },
+        {
+          "stage": "Walk",
+          "description": "Introduction of advanced analytics tools to improve data-driven decision-making and personalization efforts.",
+          "keyChanges": [
+            "Implementation of BigQuery for data warehousing.",
+            "Use of advanced analytics for segmentation."
+          ],
+          "nodes": [
+            {
+              "id": "dataSourceWebsite",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceSocialMedia",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceIoT",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceCallCenter",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "crmZoho",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "dataWarehouseBigQuery",
+              "type": "dataNode",
+              "label": "BigQuery",
+              "lane": "data",
+              "tech": "BigQuery"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge5",
+              "source": "dataSourceWebsite",
+              "target": "dataWarehouseBigQuery",
+              "type": "solid"
+            },
+            {
+              "id": "edge6",
+              "source": "dataSourceSocialMedia",
+              "target": "dataWarehouseBigQuery",
+              "type": "solid"
+            },
+            {
+              "id": "edge7",
+              "source": "dataSourceIoT",
+              "target": "dataWarehouseBigQuery",
+              "type": "solid"
+            },
+            {
+              "id": "edge8",
+              "source": "dataSourceCallCenter",
+              "target": "dataWarehouseBigQuery",
+              "type": "solid"
+            },
+            {
+              "id": "edge9",
+              "source": "crmZoho",
+              "target": "dataWarehouseBigQuery",
+              "type": "dashed"
+            }
+          ]
+        },
+        {
+          "stage": "Run",
+          "description": "Full integration of a customer data platform (CDP) to ensure real-time data analysis and personalized marketing.",
+          "keyChanges": [
+            "Real-time data processing capabilities enabled.",
+            "Enhanced customer experiences through personalization."
+          ],
+          "nodes": [
+            {
+              "id": "dataSourceWebsite",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceSocialMedia",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceIoT",
+              "type": "sourceNode",
+              "label": "IoT",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "dataSourceCallCenter",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "crmZoho",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            },
+            {
+              "id": "dataWarehouseBigQuery",
+              "type": "dataNode",
+              "label": "BigQuery",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "cdp",
+              "type": "systemNode",
+              "label": "Customer Data Platform",
+              "lane": "process",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge10",
+              "source": "dataSourceWebsite",
+              "target": "cdp",
+              "type": "solid"
+            },
+            {
+              "id": "edge11",
+              "source": "dataSourceSocialMedia",
+              "target": "cdp",
+              "type": "solid"
+            },
+            {
+              "id": "edge12",
+              "source": "dataSourceIoT",
+              "target": "cdp",
+              "type": "solid"
+            },
+            {
+              "id": "edge13",
+              "source": "dataSourceCallCenter",
+              "target": "cdp",
+              "type": "solid"
+            },
+            {
+              "id": "edge14",
+              "source": "cdp",
+              "target": "crmZoho",
+              "type": "dashed"
+            }
+          ]
+        }
+      ],
+      "useCases": [
+        {
+          "id": "useCase1",
+          "name": "Customer Segmentation",
+          "description": "Segment customers based on interaction data to improve targeting.",
+          "goals": [
+            "Enhance targeting accuracy",
+            "Increase conversion rates"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Improved targeting",
+            "Better engagement"
+          ],
+          "channels": [
+            "Email",
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Customer data from CRM"
+          ],
+          "kpis": [
+            "Conversion rates",
+            "Engagement rates"
+          ],
+          "challenges": [
+            "Data silos",
+            "Data accuracy"
+          ],
+          "architectureComponentsUsed": [
+            "crmZoho",
+            "dataWarehouseBigQuery"
+          ],
+          "businessImpact": "Increased sales through targeted campaigns.",
+          "journeys": [
+            {
+              "id": "journey1",
+              "name": "Customer Segmentation Process",
+              "trigger": "New data collected from channels",
+              "outcome": "Segment established for targeted marketing",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Collect Customer Data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Analyze Data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Create Segments",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Design Targeted Campaigns",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Launch Campaign",
+                  "channel": "Email"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Customer data must be collected.",
+            "exitCriteria": "Campaigns should show improved metrics.",
+            "steps": []
+          }
+        },
+        {
+          "id": "useCase2",
+          "name": "Lead Nurturing",
+          "description": "Systematic approach to nurture leads using personalized content.",
+          "goals": [
+            "Increase lead engagement",
+            "Shorten sales cycle"
+          ],
+          "audience": "Sales Team",
+          "benefits": [
+            "Higher quality leads",
+            "Improved sales efficiency"
+          ],
+          "channels": [
+            "Email",
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Lead interaction data"
+          ],
+          "kpis": [
+            "Lead conversion rate",
+            "Engagement rate"
+          ],
+          "challenges": [
+            "Overwhelming data",
+            "Identifying valuable leads"
+          ],
+          "architectureComponentsUsed": [
+            "crmZoho",
+            "dataWarehouseBigQuery"
+          ],
+          "businessImpact": "Higher conversion rates leading to more sales.",
+          "journeys": [
+            {
+              "id": "journey2",
+              "name": "Lead Nurturing Campaign",
+              "trigger": "Lead enters the system",
+              "outcome": "Lead nurtured through personalized content",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Identify New Lead",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Tag and Segment Lead",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Develop Content Strategy",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Send Nurturing Emails",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Evaluate Engagement",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Lead data must be identifiable.",
+            "exitCriteria": "Lead engagement should show improvement.",
+            "steps": []
+          }
+        },
+        {
+          "id": "useCase3",
+          "name": "Performance Tracking",
+          "description": "Track the performance of marketing campaigns to derive insights.",
+          "goals": [
+            "Measure marketing effectiveness",
+            "Inform future strategies"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Actionable insights",
+            "Better campaign planning"
+          ],
+          "channels": [
+            "Email",
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Campaign performance data",
+            "Customer interactions"
+          ],
+          "kpis": [
+            "ROI",
+            "CTR",
+            "Conversion rates"
+          ],
+          "challenges": [
+            "Data integrity",
+            "Attribution complexity"
+          ],
+          "architectureComponentsUsed": [
+            "dataWarehouseBigQuery"
+          ],
+          "businessImpact": "Improved strategies leading to higher ROI.",
+          "journeys": [
+            {
+              "id": "journey3",
+              "name": "Campaign Performance Evaluation",
+              "trigger": "Campaign has ended",
+              "outcome": "Insights derived from campaign data",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Gather Performance Data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Analyze Data in BigQuery",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Compile Insights",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Prepare Report",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Present Findings",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Campaign must have concluded.",
+            "exitCriteria": "Insights must be presented to stakeholders.",
+            "steps": []
+          }
+        },
+        {
+          "id": "useCase4",
+          "name": "Customer Feedback Loop",
+          "description": "Gather and analyze customer feedback to improve products and services.",
+          "goals": [
+            "Enhance customer satisfaction",
+            "Improve product offerings"
+          ],
+          "audience": "Product Development Team",
+          "benefits": [
+            "Better products",
+            "Higher customer loyalty"
+          ],
+          "channels": [
+            "Email",
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Customer feedback data"
+          ],
+          "kpis": [
+            "Customer satisfaction score",
+            "NPS"
+          ],
+          "challenges": [
+            "Low response rates",
+            "Data interpretation"
+          ],
+          "architectureComponentsUsed": [
+            "crmZoho",
+            "dataWarehouseBigQuery"
+          ],
+          "businessImpact": "Improved products leading to better customer retention.",
+          "journeys": [
+            {
+              "id": "journey4",
+              "name": "Feedback Collection Process",
+              "trigger": "Product launch or update",
+              "outcome": "Valuable customer insights gathered",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Send Feedback Request Email",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Collect Responses",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Analyze Feedback Data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Identify Improvement Areas",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Implement Changes",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Feedback requests must be sent.",
+            "exitCriteria": "Improvements should be initiated based on feedback.",
+            "steps": []
+          }
+        },
+        {
+          "id": "useCase5",
+          "name": "Product Launch Campaign",
+          "description": "Plan and execute marketing campaigns for new product launches.",
+          "goals": [
+            "Maximize product visibility",
+            "Drive customer interest"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Increased awareness",
+            "Higher sales post-launch"
+          ],
+          "channels": [
+            "Email",
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Market analysis data"
+          ],
+          "kpis": [
+            "Engagement rates",
+            "Pre-order sales"
+          ],
+          "challenges": [
+            "Market competition",
+            "Timing of the campaign"
+          ],
+          "architectureComponentsUsed": [
+            "crmZoho",
+            "dataWarehouseBigQuery"
+          ],
+          "businessImpact": "Lower time to market with higher early sales figures.",
+          "journeys": [
+            {
+              "id": "journey5",
+              "name": "Product Launch Journey",
+              "trigger": "New product introduction",
+              "outcome": "Successful market entry",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Prepare Market Analysis",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Create Promotional Content",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Plan Launch Event",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Send Launch Announcement",
+                  "channel": "Email"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Evaluate Launch Effectiveness",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "New product development must be approved.",
+            "exitCriteria": "Sales targets must be met post-launch.",
+            "steps": []
+          }
+        },
+        {
+          "id": "useCase6",
+          "name": "Data-Driven Insights",
+          "description": "Utilizing analytics for strategic decision-making and business improvement.",
+          "goals": [
+            "Enhance strategic planning",
+            "Maximize operational efficiencies"
+          ],
+          "audience": "Executive Team",
+          "benefits": [
+            "Informed decision-making",
+            "Improved operational metrics"
+          ],
+          "channels": [
+            "Email",
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Operational metrics",
+            "Market trends"
+          ],
+          "kpis": [
+            "Operational efficiency score",
+            "Strategy execution rate"
+          ],
+          "challenges": [
+            "Data overload",
+            "Integration challenges"
+          ],
+          "architectureComponentsUsed": [
+            "dataWarehouseBigQuery"
+          ],
+          "businessImpact": "Improved strategies leading to better overall performance.",
+          "journeys": [
+            {
+              "id": "journey6",
+              "name": "Insight Generation Process",
+              "trigger": "Fiscal quarter end",
+              "outcome": "Strategic insights generated for the next quarter",
+              "steps": [
+                {
+                  "id": "step1",
+                  "type": "entry",
+                  "label": "Collect Operational Data",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step2",
+                  "type": "action",
+                  "label": "Analyze Data Trends",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step3",
+                  "type": "action",
+                  "label": "Generate Insights Report",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step4",
+                  "type": "action",
+                  "label": "Review Insights with Team",
+                  "channel": "N/A"
+                },
+                {
+                  "id": "step5",
+                  "type": "exit",
+                  "label": "Adjust Strategies Accordingly",
+                  "channel": "N/A"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Quarterly data must be collected.",
+            "exitCriteria": "Strategies must be updated based on insights.",
+            "steps": []
+          }
+        }
+      ]
+    },
+    "id": 1771916118227,
+    "createdAt": "2026-02-24T06:55:18.227Z"
   }
 ]
