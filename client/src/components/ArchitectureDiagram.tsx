@@ -30,6 +30,7 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
     // Normalize lane names
     if (lane === 'activate') lane = 'engage';
     if (lane === 'service') lane = 'data';
+    if (lane === 'data & bi') lane = 'data';
 
     // Inference if lane is missing
     if (!lane || !lanes.includes(lane)) {
