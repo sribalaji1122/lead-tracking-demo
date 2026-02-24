@@ -9176,5 +9176,632 @@
     },
     "id": 1771916118227,
     "createdAt": "2026-02-24T06:55:18.227Z"
+  },
+  {
+    "companyName": "Treffer Technologies",
+    "context": {
+      "companyName": "Treffer Technologies",
+      "industry": "Manufacturing",
+      "businessModel": "B2B",
+      "region": "India",
+      "dataSources": [
+        "Website",
+        "Call Center",
+        "Social Media",
+        "IoT"
+      ],
+      "toolsUsed": {
+        "crm": "Zoho CRM",
+        "marketingAutomation": "Zoho Marketing Plus",
+        "analytics": "GA4",
+        "dataWarehouse": "BigQuery"
+      },
+      "activationChannels": [
+        "Email",
+        "Paid Media"
+      ]
+    },
+    "output": {
+      "maturity": [
+        {
+          "stage": "Current",
+          "description": "Treffer Technologies currently collects data from various sources including website interactions, call center logs, and social media, but lacks a unified analytics strategy and marketing automation.",
+          "keyChanges": [
+            "Establish basic data collection processes",
+            "Implement Zoho CRM as a central data repository"
+          ],
+          "nodes": [
+            {
+              "id": "data-source-1",
+              "type": "sourceNode",
+              "label": "Website",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "data-source-2",
+              "type": "sourceNode",
+              "label": "Call Center",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "data-source-3",
+              "type": "sourceNode",
+              "label": "Social Media",
+              "lane": "collect",
+              "tech": "N/A"
+            },
+            {
+              "id": "system-1",
+              "type": "systemNode",
+              "label": "Zoho CRM",
+              "lane": "process",
+              "tech": "Zoho CRM"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge-1",
+              "source": "data-source-1",
+              "target": "system-1",
+              "type": "solid"
+            },
+            {
+              "id": "edge-2",
+              "source": "data-source-2",
+              "target": "system-1",
+              "type": "solid"
+            },
+            {
+              "id": "edge-3",
+              "source": "data-source-3",
+              "target": "system-1",
+              "type": "solid"
+            }
+          ]
+        },
+        {
+          "stage": "Crawl",
+          "description": "Treffer Technologies begins to integrate marketing automation tools and starts to harness insights from data.",
+          "keyChanges": [
+            "Implement Zoho Marketing Plus for automation",
+            "Link CRM to website interactions"
+          ],
+          "nodes": [
+            {
+              "id": "system-2",
+              "type": "systemNode",
+              "label": "Zoho Marketing Plus",
+              "lane": "process",
+              "tech": "Zoho Marketing Plus"
+            },
+            {
+              "id": "channel-1",
+              "type": "channelNode",
+              "label": "Email",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge-4",
+              "source": "system-1",
+              "target": "system-2",
+              "type": "dashed"
+            }
+          ]
+        },
+        {
+          "stage": "Walk",
+          "description": "Treffer Technologies progresses to utilize advanced analytics for segmentation and targeting of marketing campaigns.",
+          "keyChanges": [
+            "Integrate GA4 for enhanced data analytics",
+            "Begin personalization of marketing efforts based on user data"
+          ],
+          "nodes": [
+            {
+              "id": "data-warehouse-1",
+              "type": "dataNode",
+              "label": "BigQuery",
+              "lane": "data",
+              "tech": "BigQuery"
+            },
+            {
+              "id": "channel-2",
+              "type": "channelNode",
+              "label": "Paid Media",
+              "lane": "engage",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge-5",
+              "source": "system-2",
+              "target": "data-warehouse-1",
+              "type": "solid"
+            },
+            {
+              "id": "edge-6",
+              "source": "data-warehouse-1",
+              "target": "system-1",
+              "type": "dashed"
+            }
+          ]
+        },
+        {
+          "stage": "Run",
+          "description": "Treffer Technologies fully leverages real-time data for marketing decisions, optimizing customer engagement across channels.",
+          "keyChanges": [
+            "Implement real-time data syncing across platforms",
+            "Evolution towards a Customer Data Platform (CDP) for indepth insights"
+          ],
+          "nodes": [
+            {
+              "id": "system-3",
+              "type": "systemNode",
+              "label": "CDP Technology",
+              "lane": "process",
+              "tech": "N/A"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge-7",
+              "source": "data-warehouse-1",
+              "target": "system-3",
+              "type": "dotted"
+            }
+          ]
+        }
+      ],
+      "useCases": [
+        {
+          "id": "use-case-1",
+          "name": "Lead Generation",
+          "description": "Generate leads from website visitors through form submissions.",
+          "goals": [
+            "Increase lead capture by 20%",
+            "Improve lead quality"
+          ],
+          "audience": "Sales Team",
+          "benefits": [
+            "Increased conversion rates",
+            "Better customer insights"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Website interaction data",
+            "Contact form submissions"
+          ],
+          "kpis": [
+            "Number of leads generated",
+            "Lead conversion rate"
+          ],
+          "challenges": [
+            "Underreporting from website forms"
+          ],
+          "architectureComponentsUsed": [
+            "data-source-1",
+            "system-1",
+            "system-2"
+          ],
+          "businessImpact": "Significant increase in qualified leads.",
+          "journeys": [
+            {
+              "id": "journey-1",
+              "name": "Lead Capture Journey",
+              "trigger": "Visitor lands on promotional page",
+              "outcome": "Lead captured through submission",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Visitor visits landing page"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Visitor fills lead form"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Submit form"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Lead qualification check"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Lead enters CRM"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "User arrives at the webpage",
+            "exitCriteria": "Lead successfully captured in CRM",
+            "steps": []
+          }
+        },
+        {
+          "id": "use-case-2",
+          "name": "Campaign Tracking",
+          "description": "Track the performance of email campaigns to improve engagement.",
+          "goals": [
+            "Increase open rates by 15%",
+            "Decrease unsubscribes by 10%"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Improved targeting",
+            "Data-driven decision making"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Email performance metrics"
+          ],
+          "kpis": [
+            "Open rates",
+            "Click rates"
+          ],
+          "challenges": [
+            "Integrating data from multiple sources"
+          ],
+          "architectureComponentsUsed": [
+            "system-2",
+            "data-warehouse-1"
+          ],
+          "businessImpact": "Higher email engagement and reduced churn.",
+          "journeys": [
+            {
+              "id": "journey-2",
+              "name": "Email Campaign Monitoring",
+              "trigger": "Email campaign sent",
+              "outcome": "Performance metrics collected",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Email campaign is deployed"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Monitor email open rates"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Analyze click-through rates"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Assess campaign performance"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Prepare adjustment recommendations"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Campaign is initiated",
+            "exitCriteria": "Performance review completed",
+            "steps": []
+          }
+        },
+        {
+          "id": "use-case-3",
+          "name": "Customer Retention",
+          "description": "Analyze customer interactions to identify at-risk customers.",
+          "goals": [
+            "Reduce churn by 10%",
+            "Increase customer satisfaction"
+          ],
+          "audience": "Customer Success Team",
+          "benefits": [
+            "Proactive engagement",
+            "Improved satisfaction metrics"
+          ],
+          "channels": [
+            "Email",
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Historical customer data",
+            "Engagement metrics"
+          ],
+          "kpis": [
+            "Churn rate",
+            "Customer satisfaction scores"
+          ],
+          "challenges": [
+            "Identifying accurate risk signals"
+          ],
+          "architectureComponentsUsed": [
+            "system-1",
+            "data-warehouse-1"
+          ],
+          "businessImpact": "More effective retention strategies.",
+          "journeys": [
+            {
+              "id": "journey-3",
+              "name": "Retention Risk Analysis",
+              "trigger": "Regular data review",
+              "outcome": "Identification of at-risk customers",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Review customer engagement data"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Identify customers showing low engagement"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Segment at-risk customers"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Plan outreach strategy"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Launch retention campaign"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Data review initiated",
+            "exitCriteria": "Retention campaign launched",
+            "steps": []
+          }
+        },
+        {
+          "id": "use-case-4",
+          "name": "Performance Optimization",
+          "description": "Leverage analytics to optimize marketing campaigns and engagements.",
+          "goals": [
+            "Increase campaign ROI by 25%",
+            "Enhance targeting efficacy"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Higher returns on investment",
+            "Streamlined marketing processes"
+          ],
+          "channels": [
+            "Email",
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Customer metrics",
+            "Campaign performance data"
+          ],
+          "kpis": [
+            "ROI of marketing campaigns",
+            "Engagement rates"
+          ],
+          "challenges": [
+            "Ad budget allocation",
+            "Resource management"
+          ],
+          "architectureComponentsUsed": [
+            "system-2",
+            "data-warehouse-1"
+          ],
+          "businessImpact": "Significant cost-efficiency in campaigns.",
+          "journeys": [
+            {
+              "id": "journey-4",
+              "name": "Campaign Optimization Process",
+              "trigger": "Campaign results generated",
+              "outcome": "Refined marketing strategy",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Obtain campaign performance metrics"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Analyze data for insights"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Adjust campaign parameters"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Implement changes for next campaign"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Monitor results post-implementation"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "End of current campaign",
+            "exitCriteria": "Next campaign live with optimizations",
+            "steps": []
+          }
+        },
+        {
+          "id": "use-case-5",
+          "name": "Marketing Attribution",
+          "description": "Understand which marketing channels contribute most to sales.",
+          "goals": [
+            "Increase clarity on channel performance",
+            "Allocate resources strategically"
+          ],
+          "audience": "Marketing Team",
+          "benefits": [
+            "Improved budget allocation",
+            "Better performance tracking"
+          ],
+          "channels": [
+            "Paid Media"
+          ],
+          "dataRequired": [
+            "Sales data",
+            "Channel metrics"
+          ],
+          "kpis": [
+            "Revenue by channel",
+            "Conversion rates"
+          ],
+          "challenges": [
+            "Compiling data from disparate sources"
+          ],
+          "architectureComponentsUsed": [
+            "data-warehouse-1",
+            "system-2"
+          ],
+          "businessImpact": "Optimized marketing spend and channel selection.",
+          "journeys": [
+            {
+              "id": "journey-5",
+              "name": "Attribution Analysis Journey",
+              "trigger": "Sales data collected",
+              "outcome": "Determination of channel contribution",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Compile sales performance data"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Analyze performance by channel"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Identify top-performing channels"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Allocate budget based on findings"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Report on attribution results"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Sales data finalized",
+            "exitCriteria": "Attribution report generated",
+            "steps": []
+          }
+        },
+        {
+          "id": "use-case-6",
+          "name": "Customer Feedback Loop",
+          "description": "Collect and analyze customer feedback to enhance products/services.",
+          "goals": [
+            "Increase customer satisfaction scores",
+            "Reduce product-related complaints"
+          ],
+          "audience": "Product Development Team",
+          "benefits": [
+            "Better product alignment with customer needs",
+            "Enhanced service offerings"
+          ],
+          "channels": [
+            "Email"
+          ],
+          "dataRequired": [
+            "Customer satisfaction surveys",
+            "Feedback analytics"
+          ],
+          "kpis": [
+            "Satisfaction scores",
+            "Feedback response rates"
+          ],
+          "challenges": [
+            "Ensuring participation in feedback collection"
+          ],
+          "architectureComponentsUsed": [
+            "system-1",
+            "data-warehouse-1"
+          ],
+          "businessImpact": "Aligned product features with customer demands.",
+          "journeys": [
+            {
+              "id": "journey-6",
+              "name": "Feedback Collection Process",
+              "trigger": "Customer survey distributed",
+              "outcome": "Insights gathered from customer feedback",
+              "steps": [
+                {
+                  "id": "step-1",
+                  "type": "entry",
+                  "label": "Send customer satisfaction survey"
+                },
+                {
+                  "id": "step-2",
+                  "type": "action",
+                  "label": "Collect responses"
+                },
+                {
+                  "id": "step-3",
+                  "type": "action",
+                  "label": "Analyze feedback data"
+                },
+                {
+                  "id": "step-4",
+                  "type": "decision",
+                  "label": "Identify areas for improvement"
+                },
+                {
+                  "id": "step-5",
+                  "type": "exit",
+                  "label": "Update product/service features"
+                }
+              ]
+            }
+          ],
+          "journey": {
+            "entryCriteria": "Survey distributed",
+            "exitCriteria": "Product updated based on feedback",
+            "steps": []
+          }
+        }
+      ]
+    },
+    "id": 1771917916235,
+    "createdAt": "2026-02-24T07:25:16.235Z"
   }
 ]

@@ -59,22 +59,79 @@ export default function Architecture() {
 
           <AnimatePresence mode="wait">
             {stages.map((stage) => {
-              const stageData = generatedOutput.maturity.find(
+              let stageData = generatedOutput.maturity.find(
                 s => s.stage.toLowerCase() === stage.toLowerCase()
               );
 
+              // Inject mandatory capabilities if missing
+              if (stageData) {
+                const nodes = [...(stageData.nodes || [])];
+                const labels = nodes.map(n => n.label.toLowerCase());
+
+                if (stage === "Crawl") {
+                  if (!labels.some(l => l.includes("cdp") || l.includes("warehouse"))) {
+                    nodes.push({ id: "mandatory-cdp", type: "dataNode", label: "Customer Data Platform", tech: "Core Foundation", lane: "data" });
+                  }
+                } else if (stage === "Walk") {
+                  if (!labels.some(l => l.includes("orchestration") || l.includes("braze") || l.includes("journey"))) {
+                    nodes.push({ id: "mandatory-orch", type: "systemNode", label: "Journey Orchestration", tech: "Omnichannel Logic", lane: "process" });
+                  }
+                } else if (stage === "Run") {
+                  if (!labels.some(l => l.includes("ai") || l.includes("ml") || l.includes("real-time") || l.includes("predictive"))) {
+                    nodes.push({ id: "mandatory-ai", type: "systemNode", label: "Predictive AI Engine", tech: "Real-time Decisioning", lane: "process" });
+                  }
+                }
+                stageData = { ...stageData, nodes };
+              }
+
               if (!stageData || !stageData.nodes?.length) {
+                // If AI failed but we want to show the stage with mandatory nodes
+                const mandatoryNodes: any[] = [];
+                if (stage === "Crawl") {
+                  mandatoryNodes.push({ id: "mandatory-cdp", type: "dataNode", label: "Customer Data Platform", tech: "Core Foundation", lane: "data" });
+                } else if (stage === "Walk") {
+                  mandatoryNodes.push({ id: "mandatory-orch", type: "systemNode", label: "Journey Orchestration", tech: "Omnichannel Logic", lane: "process" });
+                } else if (stage === "Run") {
+                  mandatoryNodes.push({ id: "mandatory-ai", type: "systemNode", label: "Predictive AI Engine", tech: "Real-time Decisioning", lane: "process" });
+                }
+
                 return (
                   <TabsContent key={stage} value={stage} className="space-y-6 focus-visible:outline-none">
-                    <Card className="shadow-lg border-t-4 border-t-primary/20 p-12 flex flex-col items-center justify-center text-center">
-                      <div className="text-slate-400 mb-4 font-display font-medium uppercase tracking-widest text-sm">
-                        {stage} State
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Card className="shadow-lg border-t-4 border-t-primary/20 overflow-hidden">
+                        <CardHeader className="bg-slate-50/50 border-b">
+                          <div>
+                            <CardTitle>{stage} State Architecture</CardTitle>
+                            <CardDescription>Initial enterprise architecture with mandatory capabilities.</CardDescription>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="p-0">
+                          <ArchitectureDiagram nodes={mandatoryNodes} edges={[]} />
+                        </CardContent>
+                      </Card>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                        <Card className="col-span-1 md:col-span-2 shadow-md">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <ArrowRight className="w-5 h-5 text-primary" /> Key Capabilities & Changes
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              <li className="flex items-start gap-2 text-sm text-slate-600 p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                                Establishing core enterprise capability
+                              </li>
+                            </ul>
+                          </CardContent>
+                        </Card>
                       </div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-2">Not Generated</h3>
-                      <p className="text-slate-500 max-w-md mx-auto">
-                        Run architecture not generated by AI. This stage requires more advanced strategy or was skipped in this generation.
-                      </p>
-                    </Card>
+                    </motion.div>
                   </TabsContent>
                 );
               }
