@@ -16,32 +16,50 @@ const getChannelIcon = (channel?: string) => {
 };
 
 interface JourneyDiagramProps {
-  journey: any;
+  useCase: any;
 }
 
-export function JourneyDiagram({ journey }: JourneyDiagramProps) {
+export function JourneyDiagram({ useCase }: JourneyDiagramProps) {
+  const journey = useCase?.journey;
+  
   const { initialNodes, initialEdges } = useMemo(() => {
-    // 1. If journey.steps is empty: Auto-generate one step
-    const steps = [...(journey?.steps ?? [])];
-    if (steps.length === 0) {
-      steps.push({
-        id: 'auto-step-1',
-        label: 'Primary Engagement Touchpoint',
-        type: 'action'
-      });
-    }
-
     const flowNodes: any[] = [];
     const flowEdges: any[] = [];
 
-    // 2. Build diagram like: Entry → Step1 → Exit
-    // 3. Always render at least 3 nodes: Entry, One action node, Exit
+    // Part 3: Build contextual journey
+    let steps = [...(journey?.steps ?? [])];
+    
+    if (steps.length === 0) {
+      // Build dynamic journey from channels
+      (useCase?.channels ?? []).forEach((channel: string, idx: number) => {
+        steps.push({
+          id: `dynamic-step-${idx}`,
+          type: "action",
+          label: channel + " Engagement",
+          channel: channel
+        });
+      });
+
+      // If CRM tool exists in context (we check the tech stack or use case details)
+      if (useCase?.description?.toLowerCase().includes("crm") || useCase?.title?.toLowerCase().includes("crm")) {
+        steps.push({
+          id: "dynamic-crm-update",
+          type: "action",
+          label: "CRM Update"
+        });
+      }
+    }
+
+    // Part 5: Ensure Entry & Exit always exist
+    const entryLabel = journey?.entryCriteria ?? "User enters funnel";
+    const exitLabel = journey?.exitCriteria ?? "Goal achieved";
+
     flowNodes.push({
       id: 'start-node',
       type: 'decisionNode',
       position: { x: 250, y: -120 },
       data: { 
-        label: 'ENTRY: ' + (journey?.entryCriteria ?? 'Start'), 
+        label: 'ENTRY: ' + entryLabel, 
         type: 'entryNode' 
       },
       style: { backgroundColor: '#dcfce7', borderColor: '#22c55e' }
@@ -56,7 +74,6 @@ export function JourneyDiagram({ journey }: JourneyDiagramProps) {
           label: step.label, 
           type: step.type === 'decision' ? 'decisionNode' : 'actionNode', 
           channel: step.channel,
-          // 5. Map channel icon if exists
           icon: getChannelIcon(step.channel)
         }
       });
@@ -86,22 +103,32 @@ export function JourneyDiagram({ journey }: JourneyDiagramProps) {
       type: 'decisionNode',
       position: { x: 250, y: lastY },
       data: { 
-        label: 'EXIT: ' + (journey?.exitCriteria ?? 'End'), 
+        label: 'EXIT: ' + exitLabel, 
         type: 'exitNode' 
       },
       style: { backgroundColor: '#fee2e2', borderColor: '#ef4444' }
     });
 
-    flowEdges.push({
-      id: 'last-to-end',
-      source: steps[steps.length - 1].id,
-      target: 'end-node',
-      type: 'smoothstep',
-      animated: true
-    });
+    if (steps.length > 0) {
+      flowEdges.push({
+        id: 'last-to-end',
+        source: steps[steps.length - 1].id,
+        target: 'end-node',
+        type: 'smoothstep',
+        animated: true
+      });
+    } else {
+      flowEdges.push({
+        id: 'start-to-end',
+        source: 'start-node',
+        target: 'end-node',
+        type: 'smoothstep',
+        animated: true
+      });
+    }
 
     return { initialNodes: flowNodes, initialEdges: flowEdges };
-  }, [journey]);
+  }, [useCase, journey]);
 
   const [nodes] = useNodesState(initialNodes);
   const [edges] = useEdgesState(initialEdges);

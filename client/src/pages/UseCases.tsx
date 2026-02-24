@@ -106,7 +106,7 @@ export default function UseCases() {
                               <span><strong>Entry:</strong> {useCase.journey?.entryCriteria ?? "N/A"}</span>
                               <span><strong>Exit:</strong> {useCase.journey?.exitCriteria ?? "N/A"}</span>
                             </div>
-                            <JourneyDiagram journey={useCase.journey} />
+                            <JourneyDiagram useCase={useCase} />
                           </div>
                         </AccordionContent>
                       </AccordionItem>
