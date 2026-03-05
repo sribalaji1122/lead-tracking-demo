@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<title>Tracking Page</title>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K9YEHH7NHQ"></script>
-
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-K9YEHH7NHQ');
-</script>
-
-</head>
-
-<body>
-
-<h2>Tracking Click... Redirecting to booking page</h2>
-
 <script>
 
 function getParam(name){
@@ -40,19 +18,12 @@ localStorage.setItem("step", step);
 gtag('event','demo_link_clicked',{
 leadid: leadid,
 campaign: campaign,
-step: step
+step: step,
+event_callback: function(){
+window.location.href="booking.html";
+}
 });
-
-console.log("Event Sent: demo_link_clicked");
 
 }
 
-setTimeout(function(){
-window.location.href="booking.html";
-},2500);   // increased delay to ensure GA captures event
-
 </script>
-
-</body>
-
-</html>
