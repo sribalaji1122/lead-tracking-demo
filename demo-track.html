@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Tracking Page</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K9YEHH7NHQ"></script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-K9YEHH7NHQ');
+</script>
+
+</head>
+
+<body>
+
+<h2>Tracking Click...</h2>
+
 <script>
 
 function getParam(name){
@@ -15,19 +38,30 @@ localStorage.setItem("leadid", leadid);
 localStorage.setItem("campaign", campaign);
 localStorage.setItem("step", step);
 
-if(typeof gtag === "function"){
+/* Send event */
+window.dataLayer.push({
+event: "demo_link_clicked",
+leadid: leadid,
+campaign: campaign,
+step: step
+});
 
 gtag('event','demo_link_clicked',{
 leadid: leadid,
 campaign: campaign,
-step: step,
-event_callback: function(){
-window.location.href="booking.html";
-}
+step: step
 });
 
 }
 
-}
+/* Redirect after tracking */
+
+setTimeout(function(){
+window.location.href="booking.html";
+},2000);
 
 </script>
+
+</body>
+
+</html>
