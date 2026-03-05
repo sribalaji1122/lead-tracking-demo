@@ -18,7 +18,7 @@ gtag('config', 'G-K9YEHH7NHQ');
 
 <body>
 
-<h2>Tracking Click...</h2>
+<h2>Tracking Click... Redirecting to booking page</h2>
 
 <script>
 
@@ -43,11 +43,13 @@ campaign: campaign,
 step: step
 });
 
+console.log("Event Sent: demo_link_clicked");
+
 }
 
 setTimeout(function(){
 window.location.href="booking.html";
-},1500);
+},2500);   // increased delay to ensure GA captures event
 
 </script>
 
