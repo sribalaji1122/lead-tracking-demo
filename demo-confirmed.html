@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Demo Confirmed</title>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K9YEHH7NHQ"></script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-K9YEHH7NHQ');
+</script>
+
+</head>
+
+<body>
+
+<h2>Demo Booked Successfully</h2>
+
+<script>
+
+const leadid = localStorage.getItem("leadid");
+const campaign = localStorage.getItem("campaign");
+const step = localStorage.getItem("step");
+
+if(leadid){
+
+gtag('event','demo_booking_confirmed',{
+leadid: leadid,
+campaign: campaign,
+step: step
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
