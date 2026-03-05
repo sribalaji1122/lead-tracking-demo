@@ -12,6 +12,7 @@
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
+
 gtag('config', 'G-K9YEHH7NHQ');
 </script>
 
@@ -38,14 +39,6 @@ localStorage.setItem("leadid", leadid);
 localStorage.setItem("campaign", campaign);
 localStorage.setItem("step", step);
 
-/* Send event */
-window.dataLayer.push({
-event: "demo_link_clicked",
-leadid: leadid,
-campaign: campaign,
-step: step
-});
-
 gtag('event','demo_link_clicked',{
 leadid: leadid,
 campaign: campaign,
@@ -54,14 +47,11 @@ step: step
 
 }
 
-/* Redirect after tracking */
-
 setTimeout(function(){
 window.location.href="booking.html";
-},2000);
+},1500);
 
 </script>
 
 </body>
-
 </html>
