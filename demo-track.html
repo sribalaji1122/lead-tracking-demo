@@ -15,6 +15,8 @@ localStorage.setItem("leadid", leadid);
 localStorage.setItem("campaign", campaign);
 localStorage.setItem("step", step);
 
+if(typeof gtag === "function"){
+
 gtag('event','demo_link_clicked',{
 leadid: leadid,
 campaign: campaign,
@@ -23,6 +25,8 @@ event_callback: function(){
 window.location.href="booking.html";
 }
 });
+
+}
 
 }
 
